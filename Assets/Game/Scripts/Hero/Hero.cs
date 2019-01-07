@@ -114,6 +114,13 @@ namespace Characters
 			pos.x += offset;
 			return pos;
 		}
+
+		public void HeroFailed ()
+		{
+			mover.Stop();
+			SetState(State.FAILED);
+			UpdateSprites();
+		}
 	}
 
 }
