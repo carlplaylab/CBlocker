@@ -23,6 +23,7 @@ public class EnemyHandler : MonoBehaviour
 	[SerializeField] private MovingEnemy [] enemyReferences;
 	[SerializeField] private Transform target;
 	[SerializeField] private Hero hero;
+	[SerializeField] private Girl girl;
 
 	// Enemy levels
 	[SerializeField] private EnemyLevelData [] levelData;
@@ -259,6 +260,18 @@ public class EnemyHandler : MonoBehaviour
 				//	StartLevel();
 			}
 		}
+	}
+
+	public Girl GetGirl ()
+	{
+		return this.girl;
+	}
+
+	public void LostTheGirl ()
+	{
+		hero.HeroFailed();
+		levelController = null;
+		GameManager.GetInstance().StartResults();
 	}
 
 	#endregion

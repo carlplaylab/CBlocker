@@ -276,7 +276,7 @@ MonoBehaviour:
   speed: 1
   data:
     type: 1
-    speed: 2
+    speed: 3
     attackSpeed: 2
     life: 1
     size: 1
