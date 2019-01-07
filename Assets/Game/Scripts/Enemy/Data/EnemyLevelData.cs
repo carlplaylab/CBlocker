@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 
+[Serializable]
 public class EnemyLevelData 
 {
 	public int level;
@@ -10,9 +9,11 @@ public class EnemyLevelData
 	public EnemySpawnData[] spawnData;
 }
 
+[Serializable]
 public class EnemySpawnData
 {
 	public EnemyData.Type type;
+	public int enemyId;
 	public int startCount;
 
 	public float startSpawnTime;
@@ -21,3 +22,5 @@ public class EnemySpawnData
 	public float spawnIntervals;
 	public int maxEnemies;
 }
+
+

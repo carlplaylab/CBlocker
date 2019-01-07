@@ -8,11 +8,13 @@ public class StateUI : MonoBehaviour
 
 	public void Show ()
 	{
+		//Debug.Log(this.name + " show");
 		gameObject.SetActive (true);
 	}
 
 	public void Hide ()
 	{
+		//Debug.Log(this.name + " hide");
 		gameObject.SetActive (false);
 	}
 
@@ -28,5 +30,9 @@ public class StateUI : MonoBehaviour
 			if (!gameObject.activeSelf)
 				Show ();
 		}
+	}
+
+	public virtual void UpdateScore (long score)
+	{
 	}
 }

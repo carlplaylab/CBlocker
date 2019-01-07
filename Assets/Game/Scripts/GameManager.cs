@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 		return instance;
 	}
 
-	[SerializeField] private EnemyHandler enemyHandler;
+	[SerializeField] public EnemyHandler enemyHandler;
 
 	private Dictionary<GameState.State, GameState> stateList;
 	private GameState currentState;
@@ -57,8 +57,9 @@ public class GameManager : MonoBehaviour
 		currentState.End (this);
 		currentState = stateList [nextState];
 		currentState.Start (this);
+		UIManager.GetInstance ().OnGameStateChange ();
 
-		Debug.Log (this.name + " SwitchState : " + nextState.ToString ());
+		//Debug.Log (this.name + " SwitchState : " + nextState.ToString ());
 	}
 
 	public GameState.State GetState ()

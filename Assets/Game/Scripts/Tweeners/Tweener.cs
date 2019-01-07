@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ namespace Tweeners
 		void Play ();
 		void Stop ();
 
-		void AddFinishedListener (System.Action callback);
+		void SetFinishedListener (System.Action callback);
 		void OnFinished ();
 
 		bool IsPlaying ();

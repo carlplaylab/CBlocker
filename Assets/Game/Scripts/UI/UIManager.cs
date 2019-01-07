@@ -43,5 +43,12 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
+	public void UpdateScore (long score)
+	{
+		for (int i = 0; i < uiObjects.Length; i++)
+		{
+			uiObjects [i].UpdateScore (score);
+		}
+	}
 
 }

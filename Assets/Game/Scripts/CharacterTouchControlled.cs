@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +15,14 @@ namespace Characters
 		[SerializeField] private GameObject vipObject;
 		[SerializeField] private float attackSpeed;
 		[SerializeField] private float returnSpeed;
+		[SerializeField] private float groundY = -4f;
 
 		private MoverPath pathMover;
-		private bool movingToVip = false;
+		private bool returning = false;
+
+		private int hitId = 0;
+
+		public System.Action onCharacterLanded = null;
 
 		#region Mono
 
@@ -26,7 +31,7 @@ namespace Characters
 		{
 			TouchListener.AddTouchListener (this.gameObject);
 			pathMover = GetComponent<MoverPath> ();
-			pathMover.AddFinishedListener (OnMoveEnd);
+			pathMover.SetFinishedListener (OnMoveEnd);
 		}
 
 		void OnDestroy ()
@@ -47,7 +52,12 @@ namespace Characters
 		public void OnTouch (Vector3 pos)
 		{
 			pos.z = this.transform.position.z;
-			if (movingToVip)
+			bool prevReturning = returning;
+			returning = false;
+			pathMover.SetFinishedListener (OnMoveEnd);
+			IncrementHitId();
+
+			if (prevReturning)
 			{
 				pathMover.MoveAndClearPath (pos, attackSpeed);
 			}
@@ -55,10 +65,37 @@ namespace Characters
 			{
 				pathMover.AddToPath (pos, attackSpeed);
 			}
-			movingToVip = false;
 		}
 
 		public void OnMoveEnd ()
+		{
+			//GoToGirl();
+			LandToGround();
+		}
+
+		public void OnLanded ()
+		{
+			if(onCharacterLanded != null)
+				onCharacterLanded();
+		}
+
+		private void LandToGround ()
+		{
+			Vector3 currentPos = this.transform.position;
+			float diffY = Mathf.Abs(groundY - currentPos.y);
+			if(diffY < 0.1f)
+			{
+				OnLanded();
+				return;
+			}
+
+			returning = true;
+			Vector3 newPos = new Vector3(currentPos.x, groundY, currentPos.z);
+			pathMover.AddToPath (newPos, returnSpeed);
+			pathMover.SetFinishedListener (OnMoveEnd);
+		}
+
+		private void GoToGirl ()
 		{
 			Vector3 targetPos = vipObject.transform.position;
 			Vector3 currentPos = this.transform.position;
@@ -72,9 +109,11 @@ namespace Characters
 			dist -= nearDistance;
 			Vector3 nearTarget = direction * dist;
 
+			hitId++;
+
 			if (Mathf.Abs (dist) < 0.2f)
 			{
-				movingToVip = false;
+				returning = false;
 				return;
 			}
 
@@ -82,15 +121,33 @@ namespace Characters
 			Vector3 newHeading = targetPos - currentPos;
 			if (newHeading.magnitude < 0.2f)
 			{
-				movingToVip = false;
+				returning = false;
 				return;
 			}
 
-			movingToVip = true;
+			returning = true;
 			pathMover.AddToPath (newPos, returnSpeed);
 		}
 
 		#endregion
+
+		public bool IsReturning ()
+		{
+			return returning;
+		}
+
+		public int GetHitId ()
+		{
+			return hitId;
+		}
+
+		private void IncrementHitId ()
+		{
+			if(int.MaxValue > hitId)
+				hitId++;
+			else
+				hitId = 0;
+		}
 	}
 
 }

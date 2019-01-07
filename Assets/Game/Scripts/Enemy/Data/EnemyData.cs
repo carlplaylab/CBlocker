@@ -22,6 +22,11 @@ public class EnemyData
 	public float speed = 2f;        // base movement of the enemyy
 	public float attackSpeed = 2f;	// movement when the enemy decides to attack
 	public int life = 1;
+	public float size = 0.5f;
+
+	public int hitScore = 1;
+	public int killScore = 2;
+
 
 	public SimplePathData [] startingPaths;    // Start the enemy at any of these random position and enter the scenes
 

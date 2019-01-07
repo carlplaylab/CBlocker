@@ -12,12 +12,13 @@ public class GameStatePlay : GameState
 
 	public override void Start (GameManager gm)
 	{
-
+		UIManager.GetInstance().UpdateScore(0);
+		gm.enemyHandler.StartLevel();
 	}
 
 	public override void Update (GameManager gm)
 	{
-
+		gm.enemyHandler.UpdateLevel();
 	}
 
 	public override void End (GameManager gm)

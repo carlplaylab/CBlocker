@@ -19,7 +19,8 @@ namespace Tweeners
 		private float timer = 0f;
 		private float duration = 0f;
 
-		private System.Action onEnd;
+		protected System.Action onEnd;
+		protected System.Action onStartMoving;
 
 		#region Mono
 
@@ -48,6 +49,9 @@ namespace Tweeners
 
 			duration =  Vector2.Distance (startV2, endV2)/GetSpeed (); // Duration only considers 2D distance, x and y
 			timer = 0f;
+
+			if(onStartMoving != null)
+				onStartMoving();
 		}
 
 		public void Stop ()
@@ -55,9 +59,14 @@ namespace Tweeners
 			playing = false;
 		}
 
-		public void AddFinishedListener (System.Action callback)
+		public void SetFinishedListener (System.Action callback)
 		{
 			onEnd = callback;
+		}
+
+		public void SetStartMovementListener (System.Action callback)
+		{
+			onStartMoving = callback;
 		}
 
 		public bool IsPlaying ()
@@ -118,5 +127,12 @@ namespace Tweeners
 			StartMoving (target, GetSpeed());
 		}
 
+		public float GetDirectionX ()
+		{
+			if(end.x > start.x)
+				return -1f;
+			else
+				return 1f;
+		}
 	}
 }
