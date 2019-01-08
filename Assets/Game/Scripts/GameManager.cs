@@ -91,9 +91,9 @@ public class GameManager : MonoBehaviour
 
 	public bool StartMenu ()
 	{
-		if(currentState.GetStateType() == GameState.State.PLAY)
+		if(currentState.GetStateType() == GameState.State.RESULT)
 		{
-            SwitchState (GameState.State.RESULT);
+            SwitchState (GameState.State.MENU);
 			return true;
 		}
 

@@ -112,7 +112,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4374825525055494}
-  - component: {fileID: 114875061330200878}
+  - component: {fileID: 114449272708922836}
   m_Layer: 9
   m_Name: enemy5
   m_TagString: Untagged
@@ -170,7 +170,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1758735329551786}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.24, y: 6.93, z: 0}
+  m_LocalPosition: {x: 0.24, y: 8, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4868731549040278}
@@ -262,7 +262,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114875061330200878
+--- !u!114 &114449272708922836
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -270,35 +270,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1758735329551786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37fa8436e63ae46b38a31c8b281195e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 65ba19fbaebe646b299675b891b862ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
   data:
     type: 2
     speed: 3
-    attackSpeed: 3
-    life: 1
+    attackSpeed: 1
+    life: 10
     size: 3
     hitScore: 1
-    killScore: 2
+    killScore: 20
     startingPaths:
-    - start: {x: 2.5, y: 8.5, z: 0}
-      end: {x: 2.3, y: 3, z: 0}
-    - start: {x: -2, y: 8.5, z: 0}
-      end: {x: -2, y: 2.8, z: 0}
-    - start: {x: -1, y: 8.5, z: 0}
-      end: {x: -1.5, y: 3, z: 0}
     - start: {x: 2, y: 8.5, z: 0}
-      end: {x: 2, y: 2.5, z: 0}
+      end: {x: 2, y: 3, z: 0}
+    - start: {x: 1, y: 8.5, z: 0}
+      end: {x: 1, y: 3, z: 0}
+    - start: {x: -1, y: 8.5, z: 0}
+      end: {x: 1, y: 3, z: 0}
+    - start: {x: -2, y: 8.5, z: 0}
+      end: {x: -2, y: 3, z: 0}
     pathsAfterEntrance: []
-    exitPositions:
-    - {x: -2, y: 8.5, z: 0}
-    - {x: -1, y: 8.5, z: 0}
-    - {x: 0, y: 8.5, z: 0}
-    - {x: 1, y: 8.5, z: 0}
-    - {x: 2, y: 8.5, z: 0}
-  id: 4
+    exitPositions: []
+  id: 5
+  forcedType: 2
 --- !u!212 &212075175142019744
 SpriteRenderer:
   m_ObjectHideFlags: 1

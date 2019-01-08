@@ -30,8 +30,9 @@ public class UIManager : MonoBehaviour
 
 	public void OnResultConfirm ()
 	{
-		GameManager.GetInstance ().StartResults ();
+		GameManager.GetInstance ().StartMenu ();
 	}
+
  	#endregion
 
 	public void OnGameStateChange ()
@@ -48,6 +49,14 @@ public class UIManager : MonoBehaviour
 		for (int i = 0; i < uiObjects.Length; i++)
 		{
 			uiObjects [i].UpdateScore (score);
+		}
+	}
+
+	public void SetResults (Results result)
+	{
+		for (int i = 0; i < uiObjects.Length; i++)
+		{
+			uiObjects [i].UpdateResults (result);
 		}
 	}
 

@@ -279,7 +279,7 @@ MonoBehaviour:
     speed: 2
     attackSpeed: 4
     life: 1
-    size: 1
+    size: 1.5
     hitScore: 1
     killScore: 2
     startingPaths:

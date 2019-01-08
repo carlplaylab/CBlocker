@@ -121,6 +121,13 @@ namespace Characters
 			SetState(State.FAILED);
 			UpdateSprites();
 		}
+
+		public void StartGame ()
+		{
+			mover.StopAndClearPath();
+			SetState(State.STANDING);
+			this.transform.position = new Vector3(2f, controller.groundY, 0f);
+		}
 	}
 
 }

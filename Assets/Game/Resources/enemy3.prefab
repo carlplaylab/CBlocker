@@ -185,7 +185,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1052215406030666}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.26, y: 3, z: 0}
+  m_LocalPosition: {x: 12.26, y: -3.01, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4981578382356978}
@@ -279,24 +279,24 @@ MonoBehaviour:
     speed: 3
     attackSpeed: 3
     life: 1
-    size: 1
+    size: 1.5
     hitScore: 1
     killScore: 2
     startingPaths:
-    - start: {x: 12, y: 3.7, z: 0}
-      end: {x: 2.9, y: 3.3, z: 0}
-    - start: {x: 11.2, y: -4.5, z: 0}
-      end: {x: 2.9, y: -3.9, z: 0}
-    - start: {x: -11, y: 3.4, z: 0}
-      end: {x: -6.1, y: 3, z: 0}
-    - start: {x: -12, y: -3.6, z: 0}
-      end: {x: -4.2, y: -3.6, z: 0}
+    - start: {x: 12, y: -4, z: 0}
+      end: {x: 2.9, y: -4, z: 0}
+    - start: {x: 11.2, y: -4, z: 0}
+      end: {x: 2.9, y: -4, z: 0}
+    - start: {x: -11, y: -4, z: 0}
+      end: {x: -6.1, y: -4, z: 0}
+    - start: {x: -12, y: -4, z: 0}
+      end: {x: -4.2, y: -4, z: 0}
     pathsAfterEntrance: []
     exitPositions:
-    - {x: -11.5, y: -2, z: 0}
-    - {x: -11.8, y: 2, z: 0}
-    - {x: 10.7, y: 2.3, z: 0}
-    - {x: 11, y: 0.6, z: 0}
+    - {x: -11.5, y: -4, z: 0}
+    - {x: -11.8, y: -4, z: 0}
+    - {x: 10.7, y: -4, z: 0}
+    - {x: 11, y: -4, z: 0}
   id: 3
 --- !u!212 &212412623788078408
 SpriteRenderer:
