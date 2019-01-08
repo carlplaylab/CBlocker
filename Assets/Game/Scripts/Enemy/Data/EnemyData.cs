@@ -14,7 +14,8 @@ public class EnemyData
 	{
 		ATTACKER,		// Enter the scene and attack
 		PASSERBY,		// Simply pass by the scene
-		CARRIER			// Enters the scene and brings out more attackers
+		CARRIER,			// Enters the scene and brings out more attackers
+		BOMB
 	}
 
 	public Type type = Type.PASSERBY;

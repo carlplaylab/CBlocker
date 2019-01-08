@@ -114,6 +114,20 @@ namespace Characters
 			pos.x += offset;
 			return pos;
 		}
+
+		public void HeroFailed ()
+		{
+			mover.Stop();
+			SetState(State.FAILED);
+			UpdateSprites();
+		}
+
+		public void StartGame ()
+		{
+			mover.StopAndClearPath();
+			SetState(State.STANDING);
+			this.transform.position = new Vector3(2f, controller.groundY, 0f);
+		}
 	}
 
 }

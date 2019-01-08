@@ -26,4 +26,6 @@ public interface IEnemy
 
 	int GetHitScore ();
 	int GetKillScore ();
+
+	bool IsBomb ();
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Tweeners 
 {
@@ -24,7 +22,7 @@ namespace Tweeners
 
 		#region Mono
 
-		void Update ()
+		public virtual void Update ()
 		{
 			if (IsPlaying ())
 			{
@@ -133,6 +131,12 @@ namespace Tweeners
 				return -1f;
 			else
 				return 1f;
+		}
+
+		// For following a target
+		public void AdjustEnd (Vector3 newEnd)
+		{
+			end = newEnd;
 		}
 	}
 }
