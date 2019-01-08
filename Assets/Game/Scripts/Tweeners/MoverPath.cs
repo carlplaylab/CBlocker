@@ -27,6 +27,13 @@ namespace Tweeners
 			StartMoving (pos, speed);
 		}
 
+		public void StopAndClearPath ()
+		{
+			path.Clear ();
+			pathSpeed.Clear ();
+			Stop();
+		}
+
 		public void AddToPath (Vector3 pos, float speed)
 		{
 			//Debug.Log(this.name + " AddToPath");

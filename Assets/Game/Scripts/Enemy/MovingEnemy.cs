@@ -8,7 +8,7 @@ public class MovingEnemy : MoverPath, IEnemy
 {
 	public const float OUTER_X = 10f;
 
-	[SerializeField] private EnemyData data;
+	[SerializeField] protected EnemyData data;
 
 	public enum State
 	{
@@ -21,15 +21,17 @@ public class MovingEnemy : MoverPath, IEnemy
 	}
 
 	public long id = -1;
-	private int hp = 1;
-	private int hitId = -1;
+	public EnemyData.Type forcedType = EnemyData.Type.PASSERBY;
 
-	private float squareSize = 1f;
+	protected int hp = 1;
+	protected int hitId = -1;
 
-	private State state = State.ENTERING;
-	private float attackTimer = 0f;
+	protected float squareSize = 1f;
 
-	private Transform target;
+	protected State state = State.ENTERING;
+	protected float attackTimer = 0f;
+
+	protected Transform target;
 
 	public override void Update ()
 	{
@@ -132,6 +134,12 @@ public class MovingEnemy : MoverPath, IEnemy
 		SetFinishedListener(OnEntered);
 	}
 
+	public virtual void Enter (Vector3 startPos, float delay)
+	{ 
+		transform.position = startPos;
+		Invoke("OnEntered", delay);
+	}
+
 	public virtual void Kill ()
 	{
 		if(state == State.KIDNAPPING)
@@ -147,7 +155,7 @@ public class MovingEnemy : MoverPath, IEnemy
 		Stop();
 	}
 
-	private void OnEntered ()
+	protected virtual void OnEntered ()
 	{
 		Vector3 nextPos = GetRandomPostEntryPath();
 		MoveAndClearPath(nextPos);
@@ -156,13 +164,13 @@ public class MovingEnemy : MoverPath, IEnemy
 		SetState(State.IDLING);
 
 		// if attacker, set some delay before trying an attack
-		if(data.type == EnemyData.Type.ATTACKER)
+		if(data.type == EnemyData.Type.ATTACKER || forcedType == EnemyData.Type.ATTACKER)
 		{
 			attackTimer = UnityEngine.Random.Range(0.5f, 3f);
 		}
 	}
 
-	private void OnStartExit ()
+	protected void OnStartExit ()
 	{
 		Vector3 exitPos = GetRandomExitPath();
 		SetState(State.EXITING);
@@ -170,12 +178,12 @@ public class MovingEnemy : MoverPath, IEnemy
 		SetFinishedListener(OnExitFinished);
 	}
 
-	private void OnExitFinished ()
+	protected void OnExitFinished ()
 	{
 		SendMessageUpwards("OnEnemyExit", this);
 	}
 
-	private SimplePathData GetRandomStartPath ()
+	protected SimplePathData GetRandomStartPath ()
 	{
 		if(data.startingPaths != null && data.startingPaths.Length > 0)
 		{
@@ -188,7 +196,7 @@ public class MovingEnemy : MoverPath, IEnemy
 		}
 	}
 
-	private Vector3 GetRandomPostEntryPath ()
+	protected Vector3 GetRandomPostEntryPath ()
 	{
 		if(data.pathsAfterEntrance != null && data.pathsAfterEntrance.Length > 0)
 		{
@@ -201,7 +209,7 @@ public class MovingEnemy : MoverPath, IEnemy
 		}
 	}
 
-	private Vector3 GetRandomExitPath ()
+	protected Vector3 GetRandomExitPath ()
 	{
 		if(data.exitPositions != null && data.exitPositions.Length > 0)
 		{
@@ -214,7 +222,7 @@ public class MovingEnemy : MoverPath, IEnemy
 		}
 	}
 
-	private Vector3 GetNearExitPath ()
+	protected Vector3 GetNearExitPath ()
 	{
 		float x = OUTER_X;
 		if(this.transform.position.x < 0f)
@@ -239,14 +247,25 @@ public class MovingEnemy : MoverPath, IEnemy
 		return new Vector3(x, 0f, 0f);
 	}
 
-	private void SetState (State newState)
+	protected void SetState (State newState)
 	{
 		state = newState;
 	}
 
+	public bool IsBomb ()
+	{
+		return data.type == EnemyData.Type.BOMB;
+	}
+
 	#endregion
 
-	private void Attack ()
+	public void SetAttackTimer (float timer)
+	{
+		forcedType = EnemyData.Type.ATTACKER;
+		attackTimer = timer;
+	}
+
+	public virtual void Attack ()
 	{
 		Girl girl = EnemyHandler.GetInstance().GetGirl();
 		if(girl == null)
@@ -263,7 +282,7 @@ public class MovingEnemy : MoverPath, IEnemy
 		target = girl.transform;
 	}
 
-	private void OnAttackApproach ()
+	protected void OnAttackApproach ()
 	{
 		Girl girl = EnemyHandler.GetInstance().GetGirl();
 		bool exit = true;
@@ -290,7 +309,7 @@ public class MovingEnemy : MoverPath, IEnemy
 		}
 	}
 
-	private void OnEscaped ()
+	protected void OnEscaped ()
 	{
 	}
 

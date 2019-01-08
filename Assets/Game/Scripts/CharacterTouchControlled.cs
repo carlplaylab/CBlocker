@@ -15,7 +15,7 @@ namespace Characters
 		[SerializeField] private GameObject vipObject;
 		[SerializeField] private float attackSpeed;
 		[SerializeField] private float returnSpeed;
-		[SerializeField] private float groundY = -4f;
+		[SerializeField] public float groundY = -4f;
 
 		private MoverPath pathMover;
 		private bool returning = false;

@@ -31,6 +31,7 @@ public class EnemyHandler : MonoBehaviour
 	private float prevTime = 0f;
 	private int level = 0;
 	private long score;
+	private Results results;
 
 	private EnemyLevelData currentLevel = null;
 	private LevelController levelController = null;
@@ -99,6 +100,23 @@ public class EnemyHandler : MonoBehaviour
 		return null;
 	}
 
+	public void SpawnEnemies (int enemyID, EnemyData.Type enemyType, List<Vector3> positions)
+	{
+		MovingEnemy refEnemy = GetEnemyReference(enemyID);
+		if(refEnemy != null)
+		{
+			int count = positions.Count;
+			for(int i=0; i < count; i++)
+			{
+				MovingEnemy newEnemy = (MovingEnemy)refEnemy.Create(transform, target);
+				newEnemy.id = AddEnemy(newEnemy);
+				newEnemy.gameObject.name = "enemy_" + newEnemy.id;
+				newEnemy.SetAttackTimer(Random.Range(1f, 2f));
+				newEnemy.Enter(positions[i], 0.5f);
+			}
+		}
+	}
+
 	public int SpawnEnemies (EnemySpawnData data, int count)
 	{
 		//Debug.Log("SPAWN ENEMY: id " + data.enemyId + ", count " + count);
@@ -140,6 +158,7 @@ public class EnemyHandler : MonoBehaviour
 			return;
 
 		Vector3 pos = hero.GetStrikePosition();
+		Vector3 heroPos = hero.transform.position;
 		int hitId = hero.GetHitId();
 		hitList.Clear();
 		for(int i=0; i < objectList.Count; i++)
@@ -157,12 +176,16 @@ public class EnemyHandler : MonoBehaviour
 		int killScores = 0;
 		int killMultiplier = 1;
 
+		int bombs = 0;
 		for(int i=0; i < hitList.Count; i++)
 		{
 			IEnemy hitEnemy = hitList[i];
 			if(hitEnemy == null)
 				continue;
 
+			if(hitEnemy.IsBomb())
+				bombs++;
+			
 			if(hitEnemy.IsAlive())
 			{
 				hitScores += hitEnemy.GetHitScore();
@@ -171,8 +194,12 @@ public class EnemyHandler : MonoBehaviour
 			{
 				kills++;
 				killScores += hitEnemy.GetKillScore();
+				Vector3 enemyPos = hitEnemy.GetPosition();
+				Vector3 dir = enemyPos - heroPos;
+				EffectsHandler.PlaySlash(enemyPos, dir);
+
 				hitEnemy.Kill();
-				RemoveEnemy(hitEnemy);
+				RemoveEnemy(hitEnemy); 
 			}
 		}
 		hitList.Clear();
@@ -187,7 +214,15 @@ public class EnemyHandler : MonoBehaviour
 		int totalScore = hitScores + killMultiplier * killScores;
 		score += totalScore;
 
+		results.score += totalScore;
+		results.enemiesKilled += kills;
+
 		UIManager.GetInstance().UpdateScore(score);
+
+		if(bombs > 0)
+		{
+			LostTheGirl();
+		}
 	}
 
 	private void ReportHitsAndKills ()
@@ -198,6 +233,15 @@ public class EnemyHandler : MonoBehaviour
 	#endregion
 
 	#region LEVEL MANAGEMENT
+
+	public void StartGame ()
+	{
+		results = new Results();
+
+		girl.StartGame();
+		hero.StartGame();
+		StartLevel();
+	}
 
 	public void StartLevel ()
 	{
@@ -210,6 +254,11 @@ public class EnemyHandler : MonoBehaviour
 		}
 
 		Debug.Log("StartLevel, levelController : " + (levelController != null));
+	}
+
+	public int GetLevel ()
+	{
+		return this.level;
 	}
 
 	public EnemyLevelData GetLevelData (int level)
@@ -272,6 +321,7 @@ public class EnemyHandler : MonoBehaviour
 		hero.HeroFailed();
 		levelController = null;
 		GameManager.GetInstance().StartResults();
+		UIManager.GetInstance().SetResults(results);
 	}
 
 	#endregion

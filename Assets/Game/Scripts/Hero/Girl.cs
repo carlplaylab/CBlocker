@@ -9,7 +9,7 @@ public class Girl : MonoBehaviour
 	public const float OUTER_X = 9.8f;
 
 	[SerializeField] private Mover mover;
-	[SerializeField] private float groundY = -8f;
+	[SerializeField] private float groundY = -4f;
 
 	public enum State 
 	{
@@ -83,6 +83,14 @@ public class Girl : MonoBehaviour
 	{
 		SetState(State.LOST);
 		EnemyHandler.GetInstance().LostTheGirl ();
+	}
+
+	public void StartGame ()
+	{
+		mover.Stop();
+		captor = null;
+		SetState(State.IDLE);
+		this.transform.position = new Vector3(0f, groundY, 0f);
 	}
 
 }

@@ -35,4 +35,8 @@ public class StateUI : MonoBehaviour
 	public virtual void UpdateScore (long score)
 	{
 	}
+
+	public virtual void UpdateResults (Results result)
+	{
+	}
 }

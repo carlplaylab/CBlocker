@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mover: {fileID: 114116443988496450}
-  groundY: -8
+  groundY: -4
 --- !u!212 &212334670013160272
 SpriteRenderer:
   m_ObjectHideFlags: 1
