@@ -25,6 +25,8 @@ public class EnemyHandler : MonoBehaviour
 	[SerializeField] private Hero hero;
 	[SerializeField] private Girl girl;
 
+	public float ground = -4.4f;
+
 	// Enemy levels
 	[SerializeField] private EnemyLevelData [] levelData;
 	private float levelTime = 0f;
@@ -40,6 +42,17 @@ public class EnemyHandler : MonoBehaviour
 	public static bool Exists ()
 	{
 		return instance != null;
+	}
+
+	public static float GROUND
+	{
+		get 
+		{
+			if(instance != null)
+				return instance.ground;
+			else
+				return -4.4f;
+		}
 	}
 
 	#region MONO
