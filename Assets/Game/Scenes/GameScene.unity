@@ -346,7 +346,7 @@ MonoBehaviour:
   enemyReferences:
   - {fileID: 515555267}
   - {fileID: 1234435057}
-  - {fileID: 787871422}
+  - {fileID: 787871424}
   - {fileID: 1513424885}
   - {fileID: 594743859}
   target: {fileID: 946152216}
@@ -636,12 +636,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4276842239865260, guid: e8d8a2452855d43ff8f498cbb980d493,
     type: 2}
   m_PrefabInternal: {fileID: 787871420}
---- !u!114 &787871422 stripped
+--- !u!114 &787871424 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114638427731322522, guid: e8d8a2452855d43ff8f498cbb980d493,
+  m_PrefabParentObject: {fileID: 114813205775945434, guid: e8d8a2452855d43ff8f498cbb980d493,
     type: 2}
   m_PrefabInternal: {fileID: 787871420}
-  m_Script: {fileID: 11500000, guid: 37fa8436e63ae46b38a31c8b281195e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d40dab3119f441bc99dc052db3e4ded, type: 3}
 --- !u!4 &824496969 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4325787727021304, guid: cbda04a96909845cf82943c654e3b280,
@@ -1171,12 +1171,11 @@ Prefab:
       propertyPath: m_Name
       value: enemy6
       objectReference: {fileID: 0}
-    - target: {fileID: 212822054761175010, guid: b63e1b26598ad40419d5d4e06b135000,
+    - target: {fileID: 114587698193130306, guid: b63e1b26598ad40419d5d4e06b135000,
         type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f3525768f194f443eab0fd4e3b7151a1,
-        type: 3}
+      propertyPath: data.type
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b63e1b26598ad40419d5d4e06b135000, type: 2}
   m_IsPrefabParent: 0

@@ -120,6 +120,8 @@ namespace Characters
 			mover.Stop();
 			SetState(State.FAILED);
 			UpdateSprites();
+
+			SetTouchActive(false);
 		}
 
 		public void StartGame ()
@@ -127,6 +129,13 @@ namespace Characters
 			mover.StopAndClearPath();
 			SetState(State.STANDING);
 			this.transform.position = new Vector3(2f, controller.groundY, 0f);
+
+			SetTouchActive(true);
+		}
+
+		public void SetTouchActive(bool touchActive)
+		{
+			controller.touchActive = touchActive;
 		}
 	}
 

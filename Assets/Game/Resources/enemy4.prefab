@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   data:
-    type: 0
+    type: 3
     speed: 3
     attackSpeed: 3
     life: 1
@@ -297,7 +297,9 @@ MonoBehaviour:
     - {x: -11.8, y: 2, z: 0}
     - {x: 10.7, y: 2.3, z: 0}
     - {x: 11, y: 0.6, z: 0}
+  hitObject: {fileID: 1527552099552022}
   id: 4
+  forcedType: 1
 --- !u!212 &212007495440637964
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -423,7 +425,7 @@ SpriteRenderer:
   m_SortingLayerID: 1470300027
   m_SortingLayer: 1
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: 84b6d6849e10e4286ad45394d2764d77, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3525768f194f443eab0fd4e3b7151a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
