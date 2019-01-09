@@ -8,6 +8,8 @@ TextureImporter:
     21300006: bg_asset_0005_BG0018
     21300008: bg_asset_0006_BG0017
     21300010: button
+    21300012: score_panel
+    21300014: icon
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -91,7 +93,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9079cbcac4da8469dab8d1bc5003b921
+      spriteID: d9d71b24af6ae4d04b7f763936332a3f
       vertices: []
       indices: 
       edges: []
@@ -111,7 +113,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4919d989e2c3243a1b54b29a0dee0ca9
+      spriteID: a0a254baebecc44669db5574f6cc6a8d
       vertices: []
       indices: 
       edges: []
@@ -131,7 +133,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 007ca2388eb004cdabd0e53d1a38f553
+      spriteID: a0db91e9e03694d4e927d147d26000e3
       vertices: []
       indices: 
       edges: []
@@ -151,7 +153,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 199b272a2cc044c4699a5e05cdef3fac
+      spriteID: ec1460f4708324d9b8d9966d9a2a7374
       vertices: []
       indices: 
       edges: []
@@ -160,8 +162,8 @@ TextureImporter:
       name: button
       rect:
         serializedVersion: 2
-        x: 2
-        y: 117
+        x: 375
+        y: 150
         width: 409
         height: 185
       alignment: 9
@@ -171,7 +173,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a92f3ab293d594dfa8bc79b8d05528bd
+      spriteID: 52a0ffd6081f5462da1f10cc560e0f66
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 10
+        width: 371
+        height: 292
+      alignment: 9
+      pivot: {x: 0.5053908, y: 0.48972604}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6df45253ada843b984bf16276788167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: score_panel
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 559
+        width: 785
+        height: 336
+      alignment: 9
+      pivot: {x: 0.5089172, y: 0.47619048}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f7dbc724c6fd4c28a05784e772f4f7a
       vertices: []
       indices: 
       edges: []

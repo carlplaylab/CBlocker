@@ -184,6 +184,8 @@
             <filename>../Art/BG/bg_asset_0005_BG0018.png</filename>
             <filename>../Art/BG/bg_asset_0006_BG0017.png</filename>
             <filename>../Art/BG/button.png</filename>
+            <filename>../Art/BG/score_panel.png</filename>
+            <filename>../Art/BG/icon.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
