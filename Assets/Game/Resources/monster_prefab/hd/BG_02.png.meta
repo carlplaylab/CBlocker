@@ -10,6 +10,13 @@ TextureImporter:
     21300010: button
     21300012: score_panel
     21300014: icon
+    21300016: instruction0001
+    21300018: instruction0002
+    21300020: instruction0003
+    21300022: hero_skin0003
+    21300024: hero_skin0004
+    21300026: hero_skin0005
+    21300028: lock
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -93,7 +100,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d9d71b24af6ae4d04b7f763936332a3f
+      spriteID: 7adbc1fcf5472428c9af7f51d3f34175
       vertices: []
       indices: 
       edges: []
@@ -113,7 +120,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a0a254baebecc44669db5574f6cc6a8d
+      spriteID: 479205cb61dfd4a44b8b48eea6d47c15
       vertices: []
       indices: 
       edges: []
@@ -133,7 +140,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a0db91e9e03694d4e927d147d26000e3
+      spriteID: 7d40f05095f844290baf2e6f276a8776
       vertices: []
       indices: 
       edges: []
@@ -153,7 +160,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ec1460f4708324d9b8d9966d9a2a7374
+      spriteID: 220f221b2afcd4435a83a735646ac8fe
       vertices: []
       indices: 
       edges: []
@@ -162,8 +169,8 @@ TextureImporter:
       name: button
       rect:
         serializedVersion: 2
-        x: 375
-        y: 150
+        x: 670
+        y: 134
         width: 409
         height: 185
       alignment: 9
@@ -173,7 +180,67 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 52a0ffd6081f5462da1f10cc560e0f66
+      spriteID: ecb47ee84a15c4d3f841fba568bebe54
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero_skin0003
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 372
+        width: 421
+        height: 523
+      alignment: 9
+      pivot: {x: 0.5902613, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21f3165839060477a87cfb7065b692b6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero_skin0004
+      rect:
+        serializedVersion: 2
+        x: 1588
+        y: 372
+        width: 415
+        height: 523
+      alignment: 9
+      pivot: {x: 0.57710844, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 771392326a5af4916a8cf4b1916ebc55
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero_skin0005
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 372
+        width: 423
+        height: 523
+      alignment: 9
+      pivot: {x: 0.5780142, y: 0.50191206}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ac222c660b4243b3b244662c01a3f76
       vertices: []
       indices: 
       edges: []
@@ -193,7 +260,87 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a6df45253ada843b984bf16276788167
+      spriteID: 6ea0a98a49b554b0f98c7f83d9c4aedf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: instruction0001
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 11
+        width: 293
+        height: 308
+      alignment: 9
+      pivot: {x: 0.46587032, y: 0.48376623}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a9e33351f59544daa5280665aa50690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: instruction0002
+      rect:
+        serializedVersion: 2
+        x: 1868
+        y: 198
+        width: 173
+        height: 172
+      alignment: 9
+      pivot: {x: 0.60982656, y: 0.3488372}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fad19f6fb3e9640988933ce63adccdad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: instruction0003
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 321
+        width: 387
+        height: 14
+      alignment: 9
+      pivot: {x: 0.49224806, y: -1.2142857}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae8978d5ec80949a39744eace4cdcc2f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lock
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 23
+        width: 85
+        height: 109
+      alignment: 9
+      pivot: {x: 0.58235294, y: 0.4266055}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55ed0054d4bcd4a72a0407201af57b06
       vertices: []
       indices: 
       edges: []
@@ -202,8 +349,8 @@ TextureImporter:
       name: score_panel
       rect:
         serializedVersion: 2
-        x: 740
-        y: 559
+        x: 1081
+        y: 34
         width: 785
         height: 336
       alignment: 9
@@ -213,7 +360,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0f7dbc724c6fd4c28a05784e772f4f7a
+      spriteID: d216596c779ac412580faa43398fff1e
       vertices: []
       indices: 
       edges: []

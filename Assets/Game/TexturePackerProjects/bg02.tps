@@ -186,6 +186,13 @@
             <filename>../Art/BG/button.png</filename>
             <filename>../Art/BG/score_panel.png</filename>
             <filename>../Art/BG/icon.png</filename>
+            <filename>../Art/BG/instruction0001.png</filename>
+            <filename>../Art/BG/instruction0002.png</filename>
+            <filename>../Art/BG/instruction0003.png</filename>
+            <filename>../Art/BG/hero_skin0003.png</filename>
+            <filename>../Art/BG/hero_skin0004.png</filename>
+            <filename>../Art/BG/hero_skin0005.png</filename>
+            <filename>../Art/BG/lock.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
