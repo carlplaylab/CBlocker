@@ -1,0 +1,51 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: monster_character.png (2048 x 2048)
+# $TexturePacker:SmartUpdate:1ec3a7075f699a3c7910094e1d861684:0f7bfde4c61f63d28e53644664cb2663:3e4f879866bc2cf6788d640059b1eed7$
+#
+
+alien_spaceship;1524;1739;351;307;0.5;0.5
+beam;854;1149;238;361;0.5;0.5
+black_blur_orb;1199;833;163;168;0.5;0.5
+blue_monster_body;1588;956;156;133;0.5;0.5
+bomb_body;1746;1086;257;224;0.5;0.5
+bomb_fire_01;1746;1349;62;58;0.5;0.5
+bomb_fire_02;1746;1409;70;64;0.5;0.5
+bomb_mouth;595;1373;257;137;0.5;0.5
+bomb_wire;1615;1109;75;69;0.5;0.5
+boss_eye_01;1746;1475;70;73;0.5;0.5
+boss_eye_02;1308;1062;94;100;0.5;0.5
+boss_eye_03;468;1252;122;129;0.5;0.5
+boss_eye_04;1615;1180;77;82;0.5;0.5
+boss_eye_05;1327;1164;96;102;0.5;0.5
+boss_eye_06;1032;826;165;175;0.5;0.5
+boss_eye_bag;2;1238;464;279;0.5;0.5
+boss_eye_close;1524;1550;295;187;0.5;0.5
+boss_lower_limb;1877;1723;167;161;0.5;0.5
+boss_monster_body;2;1519;620;527;0.5;0.5
+boss_upper_limb;592;1146;234;225;0.5;0.5
+circle_black;1818;1312;212;212;0.5;0.5
+circle_white;1094;1003;212;211;0.5;0.5
+defeat_alien_monster_01;1461;1264;283;284;0.5;0.5
+defeat_alien_monster_02;1168;1419;291;270;0.5;0.5
+defeat_blue_monster_01;1425;1091;188;171;0.5;0.5
+defeat_blue_monster_02;1877;1886;168;160;0.5;0.5
+defeat_frog_monster_01;1746;790;172;171;0.5;0.5
+defeat_frog_monster_02;1746;963;174;121;0.5;0.5
+defeat_yellow_monster_01;1094;1216;231;201;0.5;0.5
+defeat_yellow_monster_02;582;978;191;166;0.5;0.5
+frog_01;828;965;202;182;0.5;0.5
+frog_02;1821;1526;222;195;0.5;0.5
+orb_01;624;1512;542;534;0.5;0.5
+orb_02;1168;1691;354;355;0.5;0.5
+wing_01;1364;833;160;63;0.5;0.5
+wing_02;468;1123;112;127;0.5;0.5
+wing_03;468;1383;125;134;0.5;0.5
+wing_04;1327;1268;101;149;0.5;0.5
+yellow_monster_arm;1461;1559;42;70;0.5;0.5
+yellow_monster_body;1404;898;182;191;0.5;0.5
+yellow_monster_feet;1461;1631;47;58;0.5;0.5
