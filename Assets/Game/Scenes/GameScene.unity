@@ -327,11 +327,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4441030353040026, guid: cbda04a96909845cf82943c654e3b280, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.13
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 4441030353040026, guid: cbda04a96909845cf82943c654e3b280, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: -4.4
       objectReference: {fileID: 0}
     - target: {fileID: 4441030353040026, guid: cbda04a96909845cf82943c654e3b280, type: 2}
       propertyPath: m_LocalPosition.z
@@ -429,6 +429,11 @@ Prefab:
     - target: {fileID: 1326062904722558, guid: cbda04a96909845cf82943c654e3b280, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114272077669953360, guid: cbda04a96909845cf82943c654e3b280,
+        type: 2}
+      propertyPath: groundY
+      value: -4.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbda04a96909845cf82943c654e3b280, type: 2}
@@ -598,6 +603,7 @@ MonoBehaviour:
   target: {fileID: 946152216}
   hero: {fileID: 349045614}
   girl: {fileID: 946152217}
+  ground: -4.4
   levelData:
   - level: 0
     spawnData:
@@ -1270,6 +1276,11 @@ Prefab:
     - target: {fileID: 1820894124744496, guid: cc58619b0d9aa414da140914caef9026, type: 2}
       propertyPath: m_Name
       value: girl
+      objectReference: {fileID: 0}
+    - target: {fileID: 114409183627095108, guid: cc58619b0d9aa414da140914caef9026,
+        type: 2}
+      propertyPath: groundY
+      value: -4.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc58619b0d9aa414da140914caef9026, type: 2}
