@@ -297,7 +297,9 @@ MonoBehaviour:
     - {x: -11.8, y: 2, z: 0}
     - {x: 10.7, y: 2.3, z: 0}
     - {x: 11, y: 0.6, z: 0}
+  hitObject: {fileID: 1996437281264908}
   id: 1
+  forcedType: 1
 --- !u!212 &212537299941176862
 SpriteRenderer:
   m_ObjectHideFlags: 1

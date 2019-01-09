@@ -110,7 +110,7 @@ public class EnemyHandler : MonoBehaviour
 			{
 				MovingEnemy newEnemy = (MovingEnemy)refEnemy.Create(transform, target);
 				newEnemy.id = AddEnemy(newEnemy);
-				newEnemy.gameObject.name = "enemy_" + newEnemy.id;
+				newEnemy.gameObject.name = "enemy_" + newEnemy.GetDataId() + "_" + newEnemy.id;
 				newEnemy.SetAttackTimer(Random.Range(1f, 2f));
 				newEnemy.Enter(positions[i], 0.5f);
 			}
@@ -133,7 +133,7 @@ public class EnemyHandler : MonoBehaviour
 				{
 					MovingEnemy newEnemy = (MovingEnemy)refEnemy.Create(transform, target);
 					newEnemy.id = AddEnemy(newEnemy);
-					newEnemy.gameObject.name = "enemy_" + newEnemy.id;
+					newEnemy.gameObject.name = "enemy_" + newEnemy.GetDataId() + "_" + newEnemy.id;
 					newEnemy.Enter();
 				}
 			}
@@ -302,7 +302,7 @@ public class EnemyHandler : MonoBehaviour
 
 			CheckHitEnemies();
 
-			if(!levelController.IsActive(levelTime))
+			if(levelController != null &&!levelController.IsActive(levelTime))
 			{
 				// If enemies are all dead, start new level
 				//if(objectList.Count == 0)
