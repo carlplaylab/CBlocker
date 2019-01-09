@@ -411,6 +411,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 916039694}
     m_Modifications:
+    - target: {fileID: 111187985826541630, guid: cbda04a96909845cf82943c654e3b280,
+        type: 2}
+      propertyPath: m_Animations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4441030353040026, guid: cbda04a96909845cf82943c654e3b280, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2.13
@@ -513,6 +518,25 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1326062904722558, guid: cbda04a96909845cf82943c654e3b280, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 111187985826541630, guid: cbda04a96909845cf82943c654e3b280,
+        type: 2}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 3f536e517f2e84886bf50b828987919b, type: 2}
+    - target: {fileID: 111187985826541630, guid: cbda04a96909845cf82943c654e3b280,
+        type: 2}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: 3f536e517f2e84886bf50b828987919b, type: 2}
+    - target: {fileID: 111187985826541630, guid: cbda04a96909845cf82943c654e3b280,
+        type: 2}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: 3f536e517f2e84886bf50b828987919b, type: 2}
+    - target: {fileID: 1519828085958006, guid: cbda04a96909845cf82943c654e3b280, type: 2}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
