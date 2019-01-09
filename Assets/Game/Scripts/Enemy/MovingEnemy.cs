@@ -9,6 +9,7 @@ public class MovingEnemy : MoverPath, IEnemy
 	public const float OUTER_X = 10f;
 
 	[SerializeField] protected EnemyData data;
+	[SerializeField] protected GameObject hitObject;
 
 	public enum State
 	{
@@ -21,6 +22,7 @@ public class MovingEnemy : MoverPath, IEnemy
 	}
 
 	public long id = -1;
+
 	public EnemyData.Type forcedType = EnemyData.Type.PASSERBY;
 
 	protected int hp = 1;
@@ -32,6 +34,7 @@ public class MovingEnemy : MoverPath, IEnemy
 	protected float attackTimer = 0f;
 
 	protected Transform target;
+	protected int dataId;
 
 	public override void Update ()
 	{
@@ -52,11 +55,18 @@ public class MovingEnemy : MoverPath, IEnemy
 
 
 	#region ENEMY 
+
+	public int GetDataId ()
+	{
+		return dataId;
+	}
+
 	// Enemy creation 
 	public virtual IEnemy Create (Transform parent, Transform target)
 	{
 		MovingEnemy newEnemy = Instantiate (this, parent);
 		newEnemy.hp = data.life;
+		newEnemy.dataId = (int)this.id;
 		return (IEnemy)newEnemy;
 	}
 
@@ -72,7 +82,10 @@ public class MovingEnemy : MoverPath, IEnemy
 
 	public Vector3 GetPosition ()
 	{
-		return this.transform.position;
+		if(hitObject != null)
+			return hitObject.transform.position;
+		else
+			return this.transform.position;
 	}
 
 	public bool CheckHit (Vector3 heroPos, int hitId)

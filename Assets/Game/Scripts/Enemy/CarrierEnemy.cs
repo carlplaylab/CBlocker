@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class CarrierEnemy : MovingEnemy
 {
-	private int attackCounter = 0;
+	[SerializeField] private Vector2 spawnTimes = new Vector2(4, 8) ;
+	[SerializeField] private float spawnSpacing = 1.5f;
+
+	public int attackCounter = 0;
 
 	protected override void OnEntered ()
 	{
@@ -26,7 +29,7 @@ public class CarrierEnemy : MovingEnemy
 
 	public override void Attack ()
 	{
-		attackTimer = Random.Range(2f, 4f);
+		attackTimer = Random.Range(spawnTimes.x, spawnTimes.y);
 
 		// Create attackers
 		int enemyId = 1;
@@ -37,7 +40,7 @@ public class CarrierEnemy : MovingEnemy
 		enemyId = Random.Range(enemyId, level);
 		List<Vector3> positions = new List<Vector3>();
 		float y = this.transform.position.y - 1.5f;
-		float xSpace = 1f;
+		float xSpace = spawnSpacing;
 		int count = attackCounter + 2;
 		if(count > 6)
 			count = 6;

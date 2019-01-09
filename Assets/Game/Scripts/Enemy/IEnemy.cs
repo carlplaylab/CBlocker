@@ -7,6 +7,8 @@ public interface IEnemy
 	// Enemy creation 
 	IEnemy Create (Transform parent, Transform target);
 
+	int GetDataId ();
+
 	long GetId ();
 
 	void SetId (long id);

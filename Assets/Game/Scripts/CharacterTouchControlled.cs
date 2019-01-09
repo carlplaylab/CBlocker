@@ -22,6 +22,8 @@ namespace Characters
 
 		private int hitId = 0;
 
+		public bool touchActive = false;
+
 		public System.Action onCharacterLanded = null;
 
 		#region Mono
@@ -51,6 +53,9 @@ namespace Characters
 
 		public void OnTouch (Vector3 pos)
 		{
+			if(!touchActive)
+				return;
+			
 			pos.z = this.transform.position.z;
 			bool prevReturning = returning;
 			returning = false;

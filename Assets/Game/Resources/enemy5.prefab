@@ -293,8 +293,12 @@ MonoBehaviour:
       end: {x: -2, y: 3, z: 0}
     pathsAfterEntrance: []
     exitPositions: []
+  hitObject: {fileID: 1085354644124588}
   id: 5
   forcedType: 2
+  spawnTimes: {x: 4, y: 8}
+  spawnSpacing: 1.5
+  attackCounter: 0
 --- !u!212 &212075175142019744
 SpriteRenderer:
   m_ObjectHideFlags: 1
