@@ -47,3 +47,15 @@ TagManager:
   - name: effects
     uniqueID: 182394009
     locked: 0
+  - name: effects2
+    uniqueID: 2561461075
+    locked: 0
+  - name: effects3
+    uniqueID: 972978621
+    locked: 0
+  - name: effects4
+    uniqueID: 1086102865
+    locked: 0
+  - name: ui
+    uniqueID: 2888586773
+    locked: 0
