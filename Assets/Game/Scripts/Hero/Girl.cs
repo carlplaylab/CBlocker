@@ -10,6 +10,7 @@ public class Girl : MonoBehaviour
 
 	[SerializeField] private Mover mover;
 	[SerializeField] private float groundY = -4f;
+	[SerializeField] private GameObject[] stateObjects;
 
 	public enum State 
 	{
@@ -18,6 +19,7 @@ public class Girl : MonoBehaviour
 		LANDING = 2,
 		LOST = 3
 	}
+
 	private IEnemy captor = null;
 	private State state = State.IDLE;
 
@@ -66,6 +68,8 @@ public class Girl : MonoBehaviour
 			pos.y = groundY;
 			mover.StartMoving(pos);
 			mover.SetFinishedListener(OnLanded);
+
+			SoundHandler.PlayGirlRelease();
 		}
 	}
 
@@ -77,6 +81,22 @@ public class Girl : MonoBehaviour
 	private void SetState (State newState)
 	{
 		state = newState;
+
+		int stateIdx = (int)state;
+		if(stateIdx < 0 || stateIdx >= stateObjects.Length)
+		{
+			stateIdx = 0;
+		}
+
+		Debug.Log("stateIdx " + stateIdx);
+
+		bool stateActive = true;
+		for(int i=0; i < stateObjects.Length; i++)
+		{
+			if(stateIdx != i)
+				stateObjects[i].SetActive(false);
+		}
+		stateObjects[stateIdx].SetActive(true);
 	}
 
 	private void LostTheGirl ()
@@ -90,7 +110,7 @@ public class Girl : MonoBehaviour
 		mover.Stop();
 		captor = null;
 		SetState(State.IDLE);
-		this.transform.position = new Vector3(0f, groundY, 0f);
+		this.transform.position = new Vector3(0f, -4f, 0f);
 	}
 
 }

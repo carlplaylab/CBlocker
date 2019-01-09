@@ -184,6 +184,11 @@ public class EnemyHandler : MonoBehaviour
 			}
 		}
 
+		if(hitList.Count == 0)
+			return;
+
+		SoundHandler.PlaySlash();
+
 		int hitScores = 0;
 		int kills = 0;
 		int killScores = 0;
