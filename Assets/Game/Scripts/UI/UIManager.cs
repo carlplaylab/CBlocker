@@ -26,11 +26,13 @@ public class UIManager : MonoBehaviour
 	public void OnPlay ()
 	{
 		GameManager.GetInstance ().StartGame ();
+		SoundHandler.PlayButton();
 	}
 
 	public void OnResultConfirm ()
 	{
 		GameManager.GetInstance ().StartMenu ();
+		SoundHandler.PlayButton();
 	}
 
  	#endregion
