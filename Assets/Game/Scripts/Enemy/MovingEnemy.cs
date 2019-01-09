@@ -142,6 +142,7 @@ public class MovingEnemy : MoverPath, IEnemy
 	public virtual void Enter ()
 	{ 
 		SimplePathData startPath = GetRandomStartPath();
+		startPath = NormalizePath(startPath);
 		AddToPath(startPath.start, data.speed);
 		AddToPath(startPath.end);
 		SetFinishedListener(OnEntered);
@@ -149,7 +150,7 @@ public class MovingEnemy : MoverPath, IEnemy
 
 	public virtual void Enter (Vector3 startPos, float delay)
 	{ 
-		transform.position = startPos;
+		transform.position = NormalizeVector(startPos);
 		Invoke("OnEntered", delay);
 	}
 
@@ -171,6 +172,7 @@ public class MovingEnemy : MoverPath, IEnemy
 	protected virtual void OnEntered ()
 	{
 		Vector3 nextPos = GetRandomPostEntryPath();
+		nextPos = NormalizeVector(nextPos);
 		MoveAndClearPath(nextPos);
 		SetFinishedListener(OnStartExit);
 
@@ -186,6 +188,7 @@ public class MovingEnemy : MoverPath, IEnemy
 	protected void OnStartExit ()
 	{
 		Vector3 exitPos = GetRandomExitPath();
+		exitPos = NormalizeVector(exitPos);
 		SetState(State.EXITING);
 		MoveAndClearPath(exitPos);
 		SetFinishedListener(OnExitFinished);
@@ -271,6 +274,20 @@ public class MovingEnemy : MoverPath, IEnemy
 	}
 
 	#endregion
+
+	protected Vector3 NormalizeVector (Vector3 pos)
+	{
+		if(pos.y < EnemyHandler.GROUND)
+			pos.y = EnemyHandler.GROUND;
+		return pos;
+	}
+
+	protected SimplePathData NormalizePath (SimplePathData path)
+	{
+		path.start = NormalizeVector(path.start);
+		path.end = NormalizeVector(path.end);
+		return path;
+	}
 
 	public void SetAttackTimer (float timer)
 	{
