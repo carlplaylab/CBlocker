@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 200184146}
   - component: {fileID: 200184147}
   m_Layer: 9
-  m_Name: female_capture_anim (1)
+  m_Name: female_idle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -578,6 +578,7 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 2ed61b6835b8847d38a4f68d98fdcedd, type: 2}
   m_Animations:
+  - {fileID: 7400000, guid: 2d0e39e35aa1a40f2a89bcdd66120c84, type: 2}
   - {fileID: 7400000, guid: 2ed61b6835b8847d38a4f68d98fdcedd, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
@@ -1486,6 +1487,10 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1788729011778984, guid: cbda04a96909845cf82943c654e3b280, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbda04a96909845cf82943c654e3b280, type: 2}
   m_IsPrefabParent: 0
@@ -1549,6 +1554,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2d3746903bd0e49c992aef0351da68a9, type: 3}
   characterClips:
   - {fileID: 8300000, guid: e6518cf2701ca4c4988291928cd5fb3b, type: 3}
+  - {fileID: 8300000, guid: 681d2efe854e24333b1498caa9debbd4, type: 3}
   uiClips:
   - {fileID: 8300000, guid: f94fc8449fef54d749cf114f31263762, type: 3}
   - {fileID: 8300000, guid: 2e69e88816ad94ce78560d4412528f31, type: 3}
@@ -1669,7 +1675,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1820924338941384, guid: aaaa3a86a35d84e9ca5b918bd771199d, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1332809525955414, guid: aaaa3a86a35d84e9ca5b918bd771199d, type: 2}
       propertyPath: m_IsActive
