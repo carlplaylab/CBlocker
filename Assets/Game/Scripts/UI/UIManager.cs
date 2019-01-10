@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
 	[SerializeField] private StateUI [] uiObjects;
+	[SerializeField] private GameObject instructions;
 
 	private static UIManager instance;
 	public static UIManager GetInstance()
@@ -35,6 +36,14 @@ public class UIManager : MonoBehaviour
 		SoundHandler.PlayButton();
 	}
 
+	public void OnInstructionClicked ()
+	{
+		if(instructions != null)
+		{
+			instructions.gameObject.SetActive(false);
+		}
+	}
+
  	#endregion
 
 	public void OnGameStateChange ()
@@ -43,6 +52,14 @@ public class UIManager : MonoBehaviour
 		for (int i = 0; i < uiObjects.Length; i++)
 		{
 			uiObjects [i].UpdateState (newState);
+		}
+	}
+
+	public void ShowInstructions ()
+	{
+		if(instructions != null)
+		{
+			instructions.gameObject.SetActive(true);
 		}
 	}
 
