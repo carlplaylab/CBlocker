@@ -222,6 +222,7 @@
             <filename>../Art/monster_character/defeat_alien_monster_01.png</filename>
             <filename>../Art/monster_character/boss_monster_body_mouth_patch.png</filename>
             <filename>../Art/monster_character/boss_monster_body_mouth.png</filename>
+            <filename>../Art/monster_character/light.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
