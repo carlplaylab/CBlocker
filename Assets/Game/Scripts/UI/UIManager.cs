@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
 	[SerializeField] private StateUI [] uiObjects;
 	[SerializeField] private GameObject instructions;
+	[SerializeField] private GameObject heroSkins;
 
 	private static UIManager instance;
 	public static UIManager GetInstance()
@@ -41,6 +42,18 @@ public class UIManager : MonoBehaviour
 		if(instructions != null)
 		{
 			instructions.gameObject.SetActive(false);
+			if(heroSkins != null)
+			{
+				heroSkins.gameObject.SetActive(true);
+			}
+		}
+	}
+
+	public void OnHeroSkinsClicked ()
+	{
+		if(heroSkins != null)
+		{
+			heroSkins.gameObject.SetActive(false);
 		}
 	}
 

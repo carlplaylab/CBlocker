@@ -5,6 +5,7 @@ using UnityEngine;
 public class Effect : MonoBehaviour
 {
 	public float effectTime = 1f;
+	public bool destroyOnEnd = true;
 
 	void OnEnable ()
 	{
@@ -40,6 +41,9 @@ public class Effect : MonoBehaviour
 
 	public virtual void OnEffectsEnd ()
 	{
-		GameObject.DestroyImmediate(this.gameObject);
+		if(destroyOnEnd)
+			GameObject.DestroyImmediate(this.gameObject);
+		else
+			this.gameObject.SetActive(false);
 	}
 }

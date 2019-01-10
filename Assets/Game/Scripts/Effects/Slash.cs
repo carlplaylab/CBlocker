@@ -37,15 +37,20 @@ public class Slash : Effect
 		scaler.SetSpeed(scaleSpeed);
 		scaler.StartScaling(Vector3.zero, size);
 		scaler.SetFinishedListener(OnEntryEnd);
-
-		fader.SetFadeTime(fadeTime);
+		if(fader != null)
+		{
+			fader.SetFadeTime(fadeTime);
+		}
 	}
 
 	public override void OnEntryEnd ()
 	{
 		base.OnEntryEnd ();
-		fader.Play();
-		fader.SetFinishedListener(OnEffectsEnd);
+		if(fader != null)
+		{
+			fader.Play();
+			fader.SetFinishedListener(OnEffectsEnd);
+		}
 	}
 
 }

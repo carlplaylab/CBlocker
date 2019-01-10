@@ -14,6 +14,12 @@ public class CarrierEnemy : MovingEnemy
 	{
 		SetState(State.IDLING);
 		Attack();
+
+		int level = EnemyHandler.GetInstance().GetLevel();
+		if(level > 0)
+		{
+			hp = data.life * level;
+		}
 	}
 
 	public override void Update ()
@@ -58,7 +64,10 @@ public class CarrierEnemy : MovingEnemy
 		{
 			positions.Add(new Vector3(xStart + xSpace*i, y, 0f));
 		}
-		EnemyHandler.GetInstance().SpawnEnemies(enemyId, EnemyData.Type.ATTACKER, positions);
+
+		Vector3 basePos = this.transform.position;
+		basePos.y -= 2f;
+		EnemyHandler.GetInstance().SpawnEnemies(enemyId, EnemyData.Type.ATTACKER, positions, basePos);
 
 		attackCounter++;
 	}

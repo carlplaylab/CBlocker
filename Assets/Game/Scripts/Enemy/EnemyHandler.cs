@@ -111,7 +111,7 @@ public class EnemyHandler : MonoBehaviour
 		return null;
 	}
 
-	public void SpawnEnemies (int enemyID, EnemyData.Type enemyType, List<Vector3> positions)
+	public void SpawnEnemies (int enemyID, EnemyData.Type enemyType, List<Vector3> positions, Vector3 basePos)
 	{
 		MovingEnemy refEnemy = GetEnemyReference(enemyID);
 		if(refEnemy != null)
@@ -123,11 +123,10 @@ public class EnemyHandler : MonoBehaviour
 				newEnemy.id = AddEnemy(newEnemy);
 				newEnemy.gameObject.name = "enemy_" + newEnemy.GetDataId() + "_" + newEnemy.id;
 				newEnemy.SetAttackTimer(Random.Range(1f, 2f));
-				newEnemy.Enter(positions[i], 0.5f);
-
-				EffectsHandler.PlayPortal2(newEnemy.gameObject.transform.position);
+				newEnemy.EnterFromCarrier(basePos, positions[i], 0.5f);
 			}
 		}
+		EffectsHandler.PlayPortal2(basePos);
 	}
 
 	public int SpawnEnemies (EnemySpawnData data, int count)
@@ -186,6 +185,7 @@ public class EnemyHandler : MonoBehaviour
 		if(hitList.Count == 0)
 			return;
 
+		hero.strikeHits += hitList.Count;
 		SoundHandler.PlaySlash();
 
 		int hitScores = 0;
@@ -244,8 +244,14 @@ public class EnemyHandler : MonoBehaviour
 		{
 			EffectsHandler.PlayBomb(bombPos);
 			SoundHandler.GetInstance().PlayEnemySFX("bomb1");
+			results.bombed = true;
 			LostTheGirl();
 		}
+		else if(hero.strikeHits >= 10)
+		{
+			EffectsHandler.PlayCombo();
+		}
+
 	}
 
 	private void ReportHitsAndKills ()

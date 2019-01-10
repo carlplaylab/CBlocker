@@ -15,6 +15,7 @@ public class MovingEnemy : MoverPath, IEnemy
 	[SerializeField] protected AnimationClip defeatClip;
 	[SerializeField] protected AnimationClip hitClip;
 	[SerializeField] protected Vector3 carryOffset;
+	[SerializeField] protected Scaler scaler;
 
 	public enum State
 	{
@@ -171,6 +172,19 @@ public class MovingEnemy : MoverPath, IEnemy
 	{ 
 		transform.position = NormalizeVector(startPos);
 		Invoke("OnEntered", delay);
+	}
+
+	public virtual void EnterFromCarrier (Vector3 startPos, Vector3 endPos, float delay)
+	{ 
+		transform.position = NormalizeVector(startPos);
+		StartMoving(endPos);
+		SetDelay(delay);
+		SetFinishedListener(OnEntered);
+
+		if(scaler != null)
+		{
+			scaler.StartScaling(Vector3.zero, Vector3.one);
+		}
 	}
 
 	public virtual void Kill ()

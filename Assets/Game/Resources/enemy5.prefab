@@ -973,7 +973,7 @@ Transform:
   - {fileID: 4453215336393830}
   m_Father: {fileID: 4053270163805730}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 179.99998, z: 19.848587}
+  m_LocalEulerAnglesHint: {x: 0, y: 179.99998, z: 15.443336}
 --- !u!4 &4077516397937530
 Transform:
   m_ObjectHideFlags: 1
@@ -1014,7 +1014,7 @@ Transform:
   - {fileID: 4436751979904066}
   m_Father: {fileID: 4594956104057630}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -87.40914}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -82.82577}
 --- !u!4 &4150413884877038
 Transform:
   m_ObjectHideFlags: 1
@@ -1055,7 +1055,7 @@ Transform:
   - {fileID: 4332766858061120}
   m_Father: {fileID: 4286206423559894}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.04791}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -84.22378}
 --- !u!4 &4214040784738396
 Transform:
   m_ObjectHideFlags: 1
@@ -1163,7 +1163,7 @@ Transform:
   - {fileID: 4583430661140796}
   m_Father: {fileID: 4932930396411970}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -55.81425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -49.77557}
 --- !u!4 &4294205295820128
 Transform:
   m_ObjectHideFlags: 1
@@ -1230,7 +1230,7 @@ Transform:
   - {fileID: 4301603498976610}
   m_Father: {fileID: 4277148296614040}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -53.397873}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -41.546597}
 --- !u!4 &4370167820261442
 Transform:
   m_ObjectHideFlags: 1
@@ -1244,7 +1244,7 @@ Transform:
   - {fileID: 4237241777036296}
   m_Father: {fileID: 4453215336393830}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -58.717636}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45.685684}
 --- !u!4 &4374825525055494
 Transform:
   m_ObjectHideFlags: 1
@@ -1252,7 +1252,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1758735329551786}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.22, y: 9.49, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4868731549040278}
@@ -1393,7 +1393,7 @@ Transform:
   - {fileID: 4286206423559894}
   m_Father: {fileID: 4053270163805730}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4.606125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.3867302}
 --- !u!4 &4729908153697962
 Transform:
   m_ObjectHideFlags: 1
@@ -1519,7 +1519,7 @@ Transform:
   - {fileID: 4249984769199328}
   m_Father: {fileID: 4238984506011032}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -69.21509}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -60.202183}
 --- !u!4 &4846786542888292
 Transform:
   m_ObjectHideFlags: 1
@@ -1573,7 +1573,7 @@ Transform:
   - {fileID: 4277148296614040}
   m_Father: {fileID: 4053270163805730}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 17.0132}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13.237243}
 --- !u!4 &4884257986744652
 Transform:
   m_ObjectHideFlags: 1
@@ -1617,7 +1617,7 @@ Transform:
   - {fileID: 4594956104057630}
   m_Father: {fileID: 4053270163805730}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 179.99998, z: 6.8310943}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0.9380512}
 --- !u!4 &4932930396411970
 Transform:
   m_ObjectHideFlags: 1
@@ -1661,7 +1661,7 @@ Transform:
   - {fileID: 4932930396411970}
   m_Father: {fileID: 4053270163805730}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 179.99998, z: 29.341545}
+  m_LocalEulerAnglesHint: {x: 0, y: 179.99998, z: 25.319149}
 --- !u!4 &4980058516660608
 Transform:
   m_ObjectHideFlags: 1
@@ -1675,7 +1675,7 @@ Transform:
   - {fileID: 4238984506011032}
   m_Father: {fileID: 4053270163805730}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 33.257286}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 28.365826}
 --- !u!4 &4981589634062642
 Transform:
   m_ObjectHideFlags: 1
@@ -1785,10 +1785,12 @@ MonoBehaviour:
   idleClip: {fileID: 7400000, guid: 7f712c85867184701a61a5d2346da536, type: 2}
   defeatClip: {fileID: 7400000, guid: 84be84a6982504c96bdba89c72608f57, type: 2}
   hitClip: {fileID: 7400000, guid: 84be84a6982504c96bdba89c72608f57, type: 2}
+  carryOffset: {x: 0, y: 0, z: 0}
+  scaler: {fileID: 0}
   id: 5
   forcedType: 2
   spawnTimes: {x: 4, y: 8}
-  spawnSpacing: 1.5
+  spawnSpacing: 3
   spawnClip: {fileID: 7400000, guid: 085e67e4b4fd445638e1371661b8a41d, type: 2}
   attackCounter: 0
 --- !u!212 &212160886385642950

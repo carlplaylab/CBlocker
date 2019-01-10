@@ -9,7 +9,14 @@ public class StateUI_Results : StateUI
 	{
 		string text = "Score   " + result.score.ToString("N0");
 		text += "\nEnemies Killed  " + result.enemiesKilled.ToString("N0");
-		text += "\nGirlfriend: NONE!";
+		if(result.bombed)
+		{
+			text += "\n\nLost your LIFE!";
+		}
+		else
+		{
+			text += "\n\nLost your GIRL!";
+		}
 		resultText.text = text;
 
 		SoundHandler.GetInstance().PlaySFX("score_counter");
