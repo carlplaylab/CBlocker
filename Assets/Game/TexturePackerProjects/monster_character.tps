@@ -223,6 +223,12 @@
             <filename>../Art/monster_character/boss_monster_body_mouth_patch.png</filename>
             <filename>../Art/monster_character/boss_monster_body_mouth.png</filename>
             <filename>../Art/monster_character/light.png</filename>
+            <filename>../Art/monster_character/combo_0.png</filename>
+            <filename>../Art/monster_character/combo_B.png</filename>
+            <filename>../Art/monster_character/combo_BG.png</filename>
+            <filename>../Art/monster_character/combo_C.png</filename>
+            <filename>../Art/monster_character/combo_M.png</filename>
+            <filename>../Art/monster_character/combo_O2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
