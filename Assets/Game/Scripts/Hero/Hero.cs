@@ -106,7 +106,7 @@ namespace Characters
 		public Vector3 GetStrikePosition ()
 		{
 			Vector3 pos = this.transform.position;
-			pos.y += 1f; 	// pos is at the feet of the character
+			pos.y +=  0.7f; 	// pos is at the feet of the character
 			float offset = -0.5f;
 			if(mover.GetDirectionX() < 0f)
 				offset = 0.5f;
@@ -129,7 +129,7 @@ namespace Characters
 			mover.StopAndClearPath();
 			SetState(State.STANDING);
 			this.transform.position = new Vector3(2f, controller.groundY, 0f);
-
+			UpdateSprites();
 			SetTouchActive(true);
 		}
 

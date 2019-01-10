@@ -47,28 +47,74 @@ public class SoundHandler : MonoBehaviour
 			instance.uiSfx.PlayOneShot(instance.data.button);
 	}
 
-	public static void PlayGirlRelease()
+	public void PlayCharSFX (string soundName)
 	{
-		if(instance != null)
-			instance.uiSfx.PlayOneShot(instance.data.girlSaved);
+		AudioClip clip = null;
+		for(int i=0; i < characterClips.Length; i++)
+		{
+			if(characterClips[i] == null)
+				continue;
+
+			if(soundName == characterClips[i].name)
+			{
+				clip = characterClips[i];
+				break;
+			}
+		}
+
+		if(clip != null)
+			characterSfx.PlayOneShot(clip);
 	}
 
-	#endregion
-
-	private AudioClip GetSFXClip (string soundName)
+	public void PlaySFX (string soundName)
 	{
+		AudioClip clip = null;
 		for(int i=0; i < uiClips.Length; i++)
 		{
 			if(uiClips[i] == null)
 				continue;
-			
+
 			if(soundName == uiClips[i].name)
-				return uiClips[i];
+			{
+				clip = uiClips[i];
+				break;
+			}
 		}
-		return null;
+
+		if(clip != null)
+			uiSfx.PlayOneShot(clip);
 	}
 
+	public void PlayEnemySFX (string soundName)
+	{
+		AudioClip clip = null;
+		for(int i=0; i < enemyClips.Length; i++)
+		{
+			if(enemyClips[i] == null)
+				continue;
 
+			if(soundName == enemyClips[i].name)
+			{
+				clip = enemyClips[i];
+				break;
+			}
+		}
+
+		if(clip != null)
+			enemySfx.PlayOneShot(clip);
+	}
+
+	#endregion
+
+	public void StopBGM ()
+	{
+		bgmSource.Stop();
+	}
+
+	public void PlayBGM ()
+	{
+		bgmSource.Play();
+	}
 }
 
 
@@ -76,6 +122,5 @@ public class SoundHandler : MonoBehaviour
 public class SoundData
 {
 	public AudioClip slash;
-	public AudioClip girlSaved;
 	public AudioClip button;
 }

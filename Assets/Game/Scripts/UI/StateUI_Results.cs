@@ -11,5 +11,7 @@ public class StateUI_Results : StateUI
 		text += "\nEnemies Killed  " + result.enemiesKilled.ToString("N0");
 		text += "\nGirlfriend: NONE!";
 		resultText.text = text;
+
+		SoundHandler.GetInstance().PlaySFX("score_counter");
 	}
 }
