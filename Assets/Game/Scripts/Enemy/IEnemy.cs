@@ -18,16 +18,21 @@ public interface IEnemy
 	void Kill ();
 
 	Vector3 GetPosition ();
+	Vector3 GetCarryPosition ();
 
 	bool CheckHit (Vector3 heroPos, int hitId = 0);
 	int GetHP ();
 	void Hit ();	// Reduce life
 	bool IsAlive ();
-		
+
+	void PlayIdle ();
+	void PlayHit ();
+	void PlayDefeat ();
 	void DestroyObject ();
 
 	int GetHitScore ();
 	int GetKillScore ();
 
 	bool IsBomb ();
+
 }

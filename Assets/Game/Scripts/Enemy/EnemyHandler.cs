@@ -30,7 +30,6 @@ public class EnemyHandler : MonoBehaviour
 	// Enemy levels
 	[SerializeField] private EnemyLevelData [] levelData;
 	private float levelTime = 0f;
-	private float prevTime = 0f;
 	private int level = 0;
 	private long score;
 	private Results results;
@@ -97,7 +96,6 @@ public class EnemyHandler : MonoBehaviour
 		{
 			objectList.Remove (enemy);
 			enemy.Kill ();
-			enemy.DestroyObject();
 		}
 	}
 
@@ -126,6 +124,8 @@ public class EnemyHandler : MonoBehaviour
 				newEnemy.gameObject.name = "enemy_" + newEnemy.GetDataId() + "_" + newEnemy.id;
 				newEnemy.SetAttackTimer(Random.Range(1f, 2f));
 				newEnemy.Enter(positions[i], 0.5f);
+
+				EffectsHandler.PlayPortal2(newEnemy.gameObject.transform.position);
 			}
 		}
 	}
@@ -136,7 +136,7 @@ public class EnemyHandler : MonoBehaviour
 		int created = 0;
 		if(data != null)
 		{
-			EnemyData.Type enemyType = data.type;
+			//EnemyData.Type enemyType = data.type;
 			int enemyID = data.enemyId;
 
 			MovingEnemy refEnemy = GetEnemyReference(enemyID);
@@ -157,7 +157,6 @@ public class EnemyHandler : MonoBehaviour
 
 	public void OnEnemyExit (MovingEnemy target)
 	{
-		Debug.Log("On Enemy Exit: " + target.name);
 		target.gameObject.SetActive(false);
 		objectList.Remove(target);
 
@@ -195,6 +194,7 @@ public class EnemyHandler : MonoBehaviour
 		int killMultiplier = 1;
 
 		int bombs = 0;
+		Vector3 bombPos = Vector3.zero;
 		for(int i=0; i < hitList.Count; i++)
 		{
 			IEnemy hitEnemy = hitList[i];
@@ -202,7 +202,10 @@ public class EnemyHandler : MonoBehaviour
 				continue;
 
 			if(hitEnemy.IsBomb())
+			{
 				bombs++;
+				bombPos = hitEnemy.GetPosition();
+			}
 			
 			if(hitEnemy.IsAlive())
 			{
@@ -239,6 +242,8 @@ public class EnemyHandler : MonoBehaviour
 
 		if(bombs > 0)
 		{
+			EffectsHandler.PlayBomb(bombPos);
+			SoundHandler.GetInstance().PlayEnemySFX("bomb1");
 			LostTheGirl();
 		}
 	}
@@ -255,7 +260,11 @@ public class EnemyHandler : MonoBehaviour
 	public void StartGame ()
 	{
 		results = new Results();
+		levelTime = 0f;
+		level = 0;
+		score = 0;
 
+		SoundHandler.GetInstance().PlayBGM();
 		girl.StartGame();
 		hero.StartGame();
 		StartLevel();
@@ -337,9 +346,30 @@ public class EnemyHandler : MonoBehaviour
 	public void LostTheGirl ()
 	{
 		hero.HeroFailed();
-		levelController = null;
+		levelController.End();
+		SoundHandler.GetInstance().StopBGM ();
+
+		Invoke("ShowResults", 1.5f);
+	}
+
+	private void ShowResults ()
+	{
 		GameManager.GetInstance().StartResults();
 		UIManager.GetInstance().SetResults(results);
+
+		int objCount = objectList.Count;
+		for(int i = objCount-1; i >= 0; i--)
+		{
+			IEnemy enemyObj = objectList[i];
+			if(enemyObj != null)
+				enemyObj.DestroyObject();
+
+			enemyObj = null;
+		}
+		objectList.Clear();
+		counter = 0;
+
+		SoundHandler.GetInstance().PlaySFX("level_fail");
 	}
 
 	#endregion

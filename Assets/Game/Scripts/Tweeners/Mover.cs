@@ -8,14 +8,15 @@ namespace Tweeners
 	/// </summary>
 	public class Mover : MonoBehaviour, ITweener
 	{
-		[SerializeField] private float speed = 1f;
+		[SerializeField] protected float speed = 1f;
 
-		private Vector3 start;
-		private Vector3 end;
+		protected Vector3 start;
+		protected Vector3 end;
 
-		private bool playing = false;
-		private float timer = 0f;
-		private float duration = 0f;
+		protected bool playing = false;
+		protected float timer = 0f;
+		protected float duration = 0f;
+		protected float delay = 0f;
 
 		protected System.Action onEnd;
 		protected System.Action onStartMoving;
@@ -39,7 +40,7 @@ namespace Tweeners
 
 		#region Tweeners
 
-		public void Play ()
+		public virtual void Play ()
 		{
 			playing = true;
 			Vector2 startV2 = new Vector2 (start.x, start.y);
@@ -67,6 +68,11 @@ namespace Tweeners
 			onStartMoving = callback;
 		}
 
+		public void SetDelay (float newDelay)
+		{
+			delay = newDelay;
+		}
+
 		public bool IsPlaying ()
 		{
 			return playing;
@@ -77,8 +83,14 @@ namespace Tweeners
 			return speed;
 		}
 
-		public void UpdateTweener ()
+		public virtual void UpdateTweener ()
 		{
+			if(delay > 0f)
+			{
+				delay -= Time.deltaTime;
+				return;
+			}
+			
 			timer += Time.deltaTime;
 			float t = Mathf.Clamp(timer / duration, 0f, 1f);
 			this.transform.position = Vector3.Lerp (start, end, t);
@@ -137,6 +149,16 @@ namespace Tweeners
 		public void AdjustEnd (Vector3 newEnd)
 		{
 			end = newEnd;
+		}
+
+		protected void OverridePlaying (bool newPlaying)
+		{
+			playing = newPlaying;
+		}
+
+		protected void OverrideDuration (float newDuration)
+		{
+			duration = newDuration;
 		}
 	}
 }

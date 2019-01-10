@@ -4,43 +4,6 @@ using UnityEngine;
 
 using Tweeners;
 
-
-public class Effect : MonoBehaviour
-{
-	void OnEnable ()
-	{
-		SetupTweeners();
-	}
-
-	public virtual void Create (Vector3 pos)
-	{
-		
-	}
-
-	public virtual void Create (Vector3 pos, Vector3 dir)
-	{
-
-	}
-
-	public virtual void Play ()
-	{
-		this.gameObject.SetActive(true);
-	}
-
-	public virtual void SetupTweeners ()
-	{
-	}
-
-	public virtual void OnEntryEnd ()
-	{
-	}
-
-	public virtual void OnExitEnd ()
-	{
-		GameObject.DestroyImmediate(this.gameObject);
-	}
-}
-
 public class Slash : Effect 
 {
 	public float scaleSpeed;
@@ -82,7 +45,7 @@ public class Slash : Effect
 	{
 		base.OnEntryEnd ();
 		fader.Play();
-		fader.SetFinishedListener(OnExitEnd);
+		fader.SetFinishedListener(OnEffectsEnd);
 	}
 
 }

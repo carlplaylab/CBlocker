@@ -73,4 +73,9 @@ public class LevelController
 		return minTime <= gameTime && gameTime <= maxTime;
 	}
 
+	public void End ()
+	{
+		spawners = null;
+	}
+
 }

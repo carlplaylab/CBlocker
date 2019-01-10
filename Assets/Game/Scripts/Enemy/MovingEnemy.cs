@@ -10,6 +10,11 @@ public class MovingEnemy : MoverPath, IEnemy
 
 	[SerializeField] protected EnemyData data;
 	[SerializeField] protected GameObject hitObject;
+	[SerializeField] protected Animation enemyAnim;
+	[SerializeField] protected AnimationClip idleClip;
+	[SerializeField] protected AnimationClip defeatClip;
+	[SerializeField] protected AnimationClip hitClip;
+	[SerializeField] protected Vector3 carryOffset;
 
 	public enum State
 	{
@@ -49,7 +54,9 @@ public class MovingEnemy : MoverPath, IEnemy
 
 		if(target != null && state == State.ATTACKING)
 		{
-			AdjustEnd(target.transform.position);
+			Vector3 targetPos = target.transform.position;
+			targetPos.y -= carryOffset.y;
+			AdjustEnd(targetPos);
 		}
 	}
 
@@ -88,6 +95,14 @@ public class MovingEnemy : MoverPath, IEnemy
 			return this.transform.position;
 	}
 
+	public Vector3 GetCarryPosition ()
+	{
+		if(hitObject != null)
+			return hitObject.transform.position + carryOffset;
+		else
+			return this.transform.position  + carryOffset;
+	}
+
 	public bool CheckHit (Vector3 heroPos, int hitId)
 	{
 		if(this.hitId == hitId || !IsAlive())
@@ -120,7 +135,7 @@ public class MovingEnemy : MoverPath, IEnemy
 
 	public bool IsAlive ()
 	{
-		return hp > 0;
+		return hp > 0 && state != State.DEAD;
 	}
 
 	public int GetHitScore ()
@@ -135,16 +150,20 @@ public class MovingEnemy : MoverPath, IEnemy
 
 	public void DestroyObject ()
 	{
+		ReleaseGirl (false);
+		Stop();
+			
 		this.gameObject.SetActive(false);
 		GameObject.Destroy(this.gameObject);
 	}
 
 	public virtual void Enter ()
 	{ 
+		SetStartMovementListener(OnMoveStarted);
 		SimplePathData startPath = GetRandomStartPath();
 		startPath = NormalizePath(startPath);
-		AddToPath(startPath.start, data.speed);
-		AddToPath(startPath.end);
+		this.transform.position = startPath.start;
+		AddToPath(startPath.end, data.speed);
 		SetFinishedListener(OnEntered);
 	}
 
@@ -156,17 +175,52 @@ public class MovingEnemy : MoverPath, IEnemy
 
 	public virtual void Kill ()
 	{
+		ReleaseGirl();
+
+		// Destroy this enemy
+		SetState(State.DEAD);
+		Stop();
+		PlayDefeat();
+		Invoke("DestroyObject", 0.66f);
+	}
+
+	public virtual void PlayIdle ()
+	{
+		if(enemyAnim != null && idleClip != null)
+		{
+			enemyAnim.clip = idleClip;
+			enemyAnim.Play();
+		}
+	}
+
+	public virtual void PlayDefeat ()
+	{
+		if(enemyAnim != null && defeatClip != null)
+		{
+			enemyAnim.clip = defeatClip;
+			enemyAnim.Play();
+		}
+	}
+
+	public virtual void PlayHit ()
+	{
+		if(enemyAnim != null && hitClip != null)
+		{
+			enemyAnim.clip = hitClip;
+			enemyAnim.Play();
+		}
+	}
+
+	protected virtual void ReleaseGirl (bool saved = true)
+	{
 		if(state == State.KIDNAPPING)
 		{
 			Girl girl = EnemyHandler.GetInstance().GetGirl();
 			if(girl.IsTaken())
 			{
-				girl.Release(this);
+				girl.Release(this, saved);
 			}
 		}
-		// Destroy this enemy
-		SetState(State.DEAD);
-		Stop();
 	}
 
 	protected virtual void OnEntered ()
@@ -185,7 +239,7 @@ public class MovingEnemy : MoverPath, IEnemy
 		}
 	}
 
-	protected void OnStartExit ()
+	protected virtual void OnStartExit ()
 	{
 		Vector3 exitPos = GetRandomExitPath();
 		exitPos = NormalizeVector(exitPos);
@@ -197,6 +251,26 @@ public class MovingEnemy : MoverPath, IEnemy
 	protected void OnExitFinished ()
 	{
 		SendMessageUpwards("OnEnemyExit", this);
+	}
+
+	protected virtual void OnMoveStarted ()
+	{
+		Transform child = this.transform.GetChild(0);
+		if(child == null)
+			return; 
+
+		Vector3 childScale = child.transform.localScale;
+		if(GetDirectionX() < 0f)
+		{
+			if(childScale.x > 0f)
+				childScale.x *= -1f;
+		}
+		else
+		{
+			if(childScale.x < 0f)
+				childScale.x *= -1f;	
+		}
+		child.transform.localScale = childScale	;
 	}
 
 	protected SimplePathData GetRandomStartPath ()
@@ -306,13 +380,15 @@ public class MovingEnemy : MoverPath, IEnemy
 
 		Stop();
 		SetState(State.ATTACKING);
-		StartMoving(girl.transform.position, data.attackSpeed);
+		Vector3 targetPos = girl.transform.position;
+		targetPos.y -= carryOffset.y;
+		StartMoving(targetPos, data.attackSpeed);
 		SetFinishedListener(OnAttackApproach);
 
 		target = girl.transform;
 	}
 
-	protected void OnAttackApproach ()
+	protected virtual void OnAttackApproach ()
 	{
 		Girl girl = EnemyHandler.GetInstance().GetGirl();
 		bool exit = true;
@@ -326,6 +402,7 @@ public class MovingEnemy : MoverPath, IEnemy
 					exit = false;
 
 					Vector3 exitPos = GetNearExitPath();
+					exitPos = NormalizeVector(exitPos);
 					StartMoving(exitPos);
 					SetState(State.KIDNAPPING);
 					SetFinishedListener(OnEscaped);

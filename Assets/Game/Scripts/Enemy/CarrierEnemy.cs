@@ -6,6 +6,7 @@ public class CarrierEnemy : MovingEnemy
 {
 	[SerializeField] private Vector2 spawnTimes = new Vector2(4, 8) ;
 	[SerializeField] private float spawnSpacing = 1.5f;
+	[SerializeField] private AnimationClip spawnClip;
 
 	public int attackCounter = 0;
 
@@ -29,6 +30,13 @@ public class CarrierEnemy : MovingEnemy
 
 	public override void Attack ()
 	{
+		if(enemyAnim != null)
+		{
+			enemyAnim.clip = spawnClip;
+			enemyAnim.Play();
+			Invoke("PlayIdle", 3f);
+		}
+
 		attackTimer = Random.Range(spawnTimes.x, spawnTimes.y);
 
 		// Create attackers
@@ -48,7 +56,7 @@ public class CarrierEnemy : MovingEnemy
 		float xStart = this.transform.position.x - (count/3) * xSpace;
 		for(int i=0; i < count; i++)
 		{
-			positions.Add(new Vector3(xSpace + xSpace*i, y, 0f));
+			positions.Add(new Vector3(xStart + xSpace*i, y, 0f));
 		}
 		EnemyHandler.GetInstance().SpawnEnemies(enemyId, EnemyData.Type.ATTACKER, positions);
 

@@ -13,6 +13,7 @@ namespace Tweeners
 		public Queue<Vector3> path = new Queue<Vector3> ();
 		public Queue<float> pathSpeed = new Queue<float> ();
 
+		public System.Action onSubPathEnd;
 
 		public void MoveAndClearPath (Vector3 pos)
 		{
@@ -57,11 +58,21 @@ namespace Tweeners
 		{
 			if (path.Count > 0)
 			{
-				StartMoving (path.Dequeue (), pathSpeed.Dequeue());
+				ContinuePath();
 			}
 			else
 			{
 				base.OnFinished ();
+			}
+		}
+
+		protected virtual void ContinuePath ()
+		{
+			if (path.Count > 0)
+			{
+				StartMoving (path.Dequeue (), pathSpeed.Dequeue());
+				if(onSubPathEnd != null)
+					onSubPathEnd();
 			}
 		}
 	}

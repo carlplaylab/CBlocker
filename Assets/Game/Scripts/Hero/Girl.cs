@@ -28,9 +28,7 @@ public class Girl : MonoBehaviour
 	{
 		if(captor != null)
 		{
-			Vector3 captorPos = captor.GetPosition();
-			captorPos.y = captorPos.y - 1f;
-			this.transform.position = captorPos;
+			this.transform.position = captor.GetCarryPosition();
 
 			if(state == State.TAKEN)
 			{
@@ -57,7 +55,7 @@ public class Girl : MonoBehaviour
 		}
 	}
 
-	public void Release (IEnemy assumedCaptor)
+	public void Release (IEnemy assumedCaptor, bool saved = true)
 	{
 		if(captor == assumedCaptor)
 		{
@@ -69,7 +67,8 @@ public class Girl : MonoBehaviour
 			mover.StartMoving(pos);
 			mover.SetFinishedListener(OnLanded);
 
-			SoundHandler.PlayGirlRelease();
+			if(saved)
+				SoundHandler.GetInstance().PlayCharSFX("girl_saved");
 		}
 	}
 
@@ -88,9 +87,6 @@ public class Girl : MonoBehaviour
 			stateIdx = 0;
 		}
 
-		Debug.Log("stateIdx " + stateIdx);
-
-		bool stateActive = true;
 		for(int i=0; i < stateObjects.Length; i++)
 		{
 			if(stateIdx != i)
