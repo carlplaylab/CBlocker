@@ -66,6 +66,9 @@ public class BouncingEnemy : MovingEnemy
 
 		SetFinishedListener(OnEntered);
 
+		if(!gameObject.activeSelf)
+			gameObject.SetActive(true);
+
 	}
 
 	protected override void OnEntered ()

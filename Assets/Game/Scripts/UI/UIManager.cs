@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private GameObject instructions;
 	[SerializeField] private GameObject heroSkins;
 
+	private bool skipIntro = true;
+
 	private static UIManager instance;
 	public static UIManager GetInstance()
 	{
@@ -70,6 +72,9 @@ public class UIManager : MonoBehaviour
 
 	public void ShowInstructions ()
 	{
+		if(skipIntro)
+			return;
+		
 		if(instructions != null)
 		{
 			instructions.gameObject.SetActive(true);

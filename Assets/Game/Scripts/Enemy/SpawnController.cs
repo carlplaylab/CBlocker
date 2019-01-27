@@ -13,9 +13,11 @@ public class SpawnController
 	// Count enemies created
 	public int count;
 
+	public int id;
+
 
 	// Create a controller if the data is valid
-	public static SpawnController CreateController(EnemySpawnData spawnData)
+	public static SpawnController CreateController(EnemySpawnData spawnData, int id)
 	{
 		if (EnemyUtils.IsDataValid(spawnData))
 		{
@@ -23,6 +25,7 @@ public class SpawnController
 			newController.data = spawnData;
 			newController.time = 0f;
 			newController.count = 0;
+			newController.id = id;
 			//UnityEngine.Debug.Log("Creating spawn controller, " + spawnData.enemyId + ", time: " + spawnData.startSpawnTime + " - " + spawnData.endSpawnTime);
 			return newController;
 		}
@@ -32,7 +35,7 @@ public class SpawnController
 	public void Update (EnemyHandler handler, float gameTime, float delta)
 	{
 		time += delta;
-		if (EnemyUtils.CheckSpawnNeeded(data, gameTime, time))
+		if (EnemyUtils.CheckSpawnNeeded(data, gameTime, time, count))
 		{
 			// Ask the enemy handler to create new enemies
 			time = 0f;
@@ -40,7 +43,7 @@ public class SpawnController
 			if(count == 0)
 				createEnemies = data.startCount;
 			
-			count += handler.SpawnEnemies(data, createEnemies);
+			count += handler.SpawnEnemies(data, createEnemies, id);
 		}
 	}
 }

@@ -122,34 +122,52 @@ public class EnemyHandler : MonoBehaviour
 				MovingEnemy newEnemy = (MovingEnemy)refEnemy.Create(transform, target);
 				newEnemy.id = AddEnemy(newEnemy);
 				newEnemy.gameObject.name = "enemy_" + newEnemy.GetDataId() + "_" + newEnemy.id;
-				newEnemy.SetAttackTimer(Random.Range(1f, 2f));
+				//newEnemy.SetAttackTimer(Random.Range(1f, 2f));
+				newEnemy.SetAttackTimer(3f);
 				newEnemy.EnterFromCarrier(basePos, positions[i], 0.5f);
 			}
 		}
 		EffectsHandler.PlayPortal2(basePos);
 	}
 
-	public int SpawnEnemies (EnemySpawnData data, int count)
+	public int SpawnEnemies (EnemySpawnData data, int count, int controllerId)
 	{
 		//Debug.Log("SPAWN ENEMY: id " + data.enemyId + ", count " + count);
 		int created = 0;
-		if(data != null)
+		if(data == null)
 		{
-			//EnemyData.Type enemyType = data.type;
-			int enemyID = data.enemyId;
+			return created;
+		}
 
-			MovingEnemy refEnemy = GetEnemyReference(enemyID);
-			if(refEnemy != null)
+		// First count existing enemies
+		int existingEnemies = CountEnemiesFromController(controllerId);
+		int allowableEnemies = data.maxEnemies - existingEnemies;
+		if(allowableEnemies <= 0)
+		{
+			return created;
+		}
+
+		if(count > allowableEnemies)
+		{
+			count = allowableEnemies;	// Limit the enemies to create 
+		}
+		
+		//EnemyData.Type enemyType = data.type;
+		int enemyID = data.enemyId;
+
+		MovingEnemy refEnemy = GetEnemyReference(enemyID);
+		if(refEnemy != null)
+		{
+			for(int i=0; i < count; i++)
 			{
-				for(int i=0; i < count; i++)
-				{
-					MovingEnemy newEnemy = (MovingEnemy)refEnemy.Create(transform, target);
-					newEnemy.id = AddEnemy(newEnemy);
-					newEnemy.gameObject.name = "enemy_" + newEnemy.GetDataId() + "_" + newEnemy.id;
-					newEnemy.Enter();
-				}
+				MovingEnemy newEnemy = (MovingEnemy)refEnemy.Create(transform, target);
+				newEnemy.id = AddEnemy(newEnemy);
+				newEnemy.gameObject.name = "enemy_" + newEnemy.GetDataId() + "_" + newEnemy.id;
+				newEnemy.spawnControllerId = controllerId;
+				newEnemy.Enter();
 			}
 		}
+
 
 		return created;
 	}
@@ -259,6 +277,19 @@ public class EnemyHandler : MonoBehaviour
 		
 	}
 
+	public int CountEnemiesFromController (int controllerId)
+	{
+		int count = 0;
+		for(int i=0; i < objectList.Count; i++)
+		{
+			if(objectList[i] != null)
+			{
+				if(objectList[i].GetControllerId() == controllerId)
+					count++;
+			}
+		}
+		return count;
+	}
 	#endregion
 
 	#region LEVEL MANAGEMENT
@@ -280,13 +311,13 @@ public class EnemyHandler : MonoBehaviour
 	{
 		currentLevel = GetLevelData(level);
 
-		Debug.Log("StartLevel, currentLevel : " + (currentLevel != null) + ", " + currentLevel.level);
+		//Debug.Log("StartLevel, currentLevel : " + (currentLevel != null) + ", " + currentLevel.level);
 		if(currentLevel != null)
 		{
 			levelController = new LevelController(currentLevel);
 		}
 
-		Debug.Log("StartLevel, levelController : " + (levelController != null));
+		//Debug.Log("StartLevel, levelController : " + (levelController != null));
 	}
 
 	public int GetLevel ()

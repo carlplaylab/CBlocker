@@ -19,7 +19,7 @@ public class LevelController
 		for (int i=0; i < data.spawnData.Length; i++)
 		{
 			EnemySpawnData spawnData = data.spawnData[i];
-			spawners[i] = SpawnController.CreateController(spawnData);
+			spawners[i] = SpawnController.CreateController(spawnData, i);
 
 			if(spawners[i] != null)
 			{
@@ -51,7 +51,7 @@ public class LevelController
 				}
 			}
 		}
-		Debug.Log("spawners.Length : " + spawners.Length + ", created: " + created);
+		//Debug.Log("spawners.Length : " + spawners.Length + ", created: " + created);
 	}
 
 	public void Update (EnemyHandler enemyHandler, float gameTime, float delta)
