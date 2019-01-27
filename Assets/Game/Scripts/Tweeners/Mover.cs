@@ -111,6 +111,7 @@ namespace Tweeners
 		}
 
 		#endregion
+
 		public void StartMoving (Vector3 start, Vector3 end, float speed)
 		{
 			this.speed = speed;

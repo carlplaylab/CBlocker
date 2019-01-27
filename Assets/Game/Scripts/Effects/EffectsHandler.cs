@@ -17,6 +17,7 @@ public class EffectsHandler : MonoBehaviour
 	[SerializeField] private Effect portal1;
 	[SerializeField] private Effect portal2;
 	[SerializeField] private Effect portalBlur;
+	[SerializeField] private Effect combo;
 
 	void Awake ()
 	{
@@ -64,6 +65,15 @@ public class EffectsHandler : MonoBehaviour
 		if(instance != null)
 		{
 			instance.portalBlur.Create(pos);
+		}
+	}
+
+	public static void PlayCombo ()
+	{
+		if(instance != null)
+		{
+			if(!instance.combo.gameObject.activeSelf)
+				instance.combo.Play();
 		}
 	}
 }

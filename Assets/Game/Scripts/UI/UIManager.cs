@@ -6,6 +6,9 @@ public class UIManager : MonoBehaviour
 {
 	[SerializeField] private StateUI [] uiObjects;
 	[SerializeField] private GameObject instructions;
+	[SerializeField] private GameObject heroSkins;
+
+	private bool skipIntro = true;
 
 	private static UIManager instance;
 	public static UIManager GetInstance()
@@ -41,6 +44,18 @@ public class UIManager : MonoBehaviour
 		if(instructions != null)
 		{
 			instructions.gameObject.SetActive(false);
+			if(heroSkins != null)
+			{
+				heroSkins.gameObject.SetActive(true);
+			}
+		}
+	}
+
+	public void OnHeroSkinsClicked ()
+	{
+		if(heroSkins != null)
+		{
+			heroSkins.gameObject.SetActive(false);
 		}
 	}
 
@@ -57,6 +72,9 @@ public class UIManager : MonoBehaviour
 
 	public void ShowInstructions ()
 	{
+		if(skipIntro)
+			return;
+		
 		if(instructions != null)
 		{
 			instructions.gameObject.SetActive(true);

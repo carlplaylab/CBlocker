@@ -17,6 +17,9 @@ namespace Characters
 		[SerializeField] private SpriteRenderer bodySprite;
 		[SerializeField] private Sprite[] sprites;
 
+
+		public int strikeHits = 0;
+
 		public enum State
 		{
 			STANDING = 0,
@@ -82,6 +85,7 @@ namespace Characters
 
 		private void OnMoveStarted ()
 		{
+			strikeHits = 0;
 			if(IsAttacking())
 			{
 				SetState(State.FLYING);

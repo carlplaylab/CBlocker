@@ -11,6 +11,8 @@ public interface IEnemy
 
 	long GetId ();
 
+	int GetControllerId ();
+
 	void SetId (long id);
 
 	void Enter ();

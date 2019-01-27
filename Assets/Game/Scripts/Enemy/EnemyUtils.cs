@@ -34,14 +34,23 @@ public class EnemyUtils
 	}
 
 	// Check spawn data if new enemies must be spawned
-	public static bool CheckSpawnNeeded (EnemySpawnData data, float currentTime, float controllerTime)
+	public static bool CheckSpawnNeeded (EnemySpawnData data, float currentTime, float controllerTime, int spawnCount)
 	{
 		if (!CheckDataActive(data, currentTime))
 		{
 			return false;
 		}
-		
-		return (controllerTime >= data.spawnIntervals);
+
+		if(spawnCount == 0)
+		{
+			// on first spawn, check spawn timer
+			return controllerTime >= data.startSpawnTime;
+		}
+		else 
+		{
+			// after the first spawn, rely on checking timer vs spawn intervals
+			return (controllerTime >= data.spawnIntervals);
+		}
 	}
 
 	public static void GetHits (Vector3 heroPos, List<IEnemy> enemies, ref List<IEnemy> hits)

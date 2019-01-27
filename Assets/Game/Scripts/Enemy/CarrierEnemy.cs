@@ -5,7 +5,7 @@ using UnityEngine;
 public class CarrierEnemy : MovingEnemy
 {
 	[SerializeField] private Vector2 spawnTimes = new Vector2(4, 8) ;
-	[SerializeField] private float spawnSpacing = 1.5f;
+	[SerializeField] private float spawnSpacing = 2f;
 	[SerializeField] private AnimationClip spawnClip;
 
 	public int attackCounter = 0;
@@ -14,6 +14,12 @@ public class CarrierEnemy : MovingEnemy
 	{
 		SetState(State.IDLING);
 		Attack();
+
+		int level = EnemyHandler.GetInstance().GetLevel();
+		if(level > 0)
+		{
+			hp = data.life * level;
+		}
 	}
 
 	public override void Update ()
@@ -34,7 +40,7 @@ public class CarrierEnemy : MovingEnemy
 		{
 			enemyAnim.clip = spawnClip;
 			enemyAnim.Play();
-			Invoke("PlayIdle", 3f);
+			Invoke("PlayIdle", 4f);
 		}
 
 		attackTimer = Random.Range(spawnTimes.x, spawnTimes.y);
@@ -46,19 +52,23 @@ public class CarrierEnemy : MovingEnemy
 			level = 4;
 
 		enemyId = Random.Range(enemyId, level);
+		Vector3 basePos = this.transform.position;
+		basePos.y -= 1.6f;
+
 		List<Vector3> positions = new List<Vector3>();
-		float y = this.transform.position.y - 1.5f;
 		float xSpace = spawnSpacing;
+		float yPos = basePos.y - 2f;
 		int count = attackCounter + 2;
 		if(count > 6)
 			count = 6;
 
-		float xStart = this.transform.position.x - (count/3) * xSpace;
+		float xStart = basePos.x - (count-1) * 0.5f * xSpace;
 		for(int i=0; i < count; i++)
 		{
-			positions.Add(new Vector3(xStart + xSpace*i, y, 0f));
+			positions.Add(new Vector3(xStart + xSpace*i, yPos, 0f));
 		}
-		EnemyHandler.GetInstance().SpawnEnemies(enemyId, EnemyData.Type.ATTACKER, positions);
+
+		EnemyHandler.GetInstance().SpawnEnemies(enemyId, EnemyData.Type.ATTACKER, positions, basePos);
 
 		attackCounter++;
 	}

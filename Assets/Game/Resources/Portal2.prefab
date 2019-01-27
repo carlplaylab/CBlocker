@@ -20,7 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4278360783083100}
   - component: {fileID: 212207526359605124}
-  m_Layer: 10
+  - component: {fileID: 114741180362422816}
+  m_Layer: 9
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,8 +36,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4135198216131650}
-  - component: {fileID: 114709133537125380}
-  m_Layer: 10
+  - component: {fileID: 114076392767990012}
+  - component: {fileID: 114589158867177496}
+  m_Layer: 9
   m_Name: Portal2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +72,7 @@ Transform:
   m_Father: {fileID: 4135198216131650}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114709133537125380
+--- !u!114 &114076392767990012
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -78,10 +80,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 1189262729837236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efd6ed9315f754a5ebe35e53cfb22c10, type: 3}
+  m_Script: {fileID: 11500000, guid: 88507055cdd074a509288f3393ae0aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   effectTime: 1
+  destroyOnEnd: 1
+  scaleSpeed: 2
+  size: {x: 1, y: 1, z: 1}
+  fadeTime: 0.8
+  scaler: {fileID: 114589158867177496}
+  fader: {fileID: 0}
+--- !u!114 &114589158867177496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1189262729837236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78fe0c5ad051643b7b8b2b6ab357cd5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.2
+  start: {x: 0, y: 0, z: 1}
+  end: {x: 1, y: 1, z: 1}
+--- !u!114 &114741180362422816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1121733386459204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347686cffb4764cf899389315a4a7018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  duration: 0.8
 --- !u!212 &212207526359605124
 SpriteRenderer:
   m_ObjectHideFlags: 1

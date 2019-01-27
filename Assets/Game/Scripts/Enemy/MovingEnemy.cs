@@ -15,6 +15,7 @@ public class MovingEnemy : MoverPath, IEnemy
 	[SerializeField] protected AnimationClip defeatClip;
 	[SerializeField] protected AnimationClip hitClip;
 	[SerializeField] protected Vector3 carryOffset;
+	[SerializeField] protected Scaler scaler;
 
 	public enum State
 	{
@@ -27,6 +28,7 @@ public class MovingEnemy : MoverPath, IEnemy
 	}
 
 	public long id = -1;
+	public int spawnControllerId = 0;
 
 	public EnemyData.Type forcedType = EnemyData.Type.PASSERBY;
 
@@ -87,7 +89,12 @@ public class MovingEnemy : MoverPath, IEnemy
 		this.id = id;
 	}
 
-	public Vector3 GetPosition ()
+	public int GetControllerId ()
+	{
+		return spawnControllerId;
+	}
+
+	public virtual Vector3 GetBodySpritePosition ()
 	{
 		if(hitObject != null)
 			return hitObject.transform.position;
@@ -95,7 +102,15 @@ public class MovingEnemy : MoverPath, IEnemy
 			return this.transform.position;
 	}
 
-	public Vector3 GetCarryPosition ()
+	public Vector3 GetPosition ()
+	{
+		if(hitObject != null)
+			return GetBodySpritePosition();
+		else
+			return this.transform.position;
+	}
+
+	public virtual Vector3 GetCarryPosition ()
 	{
 		if(hitObject != null)
 			return hitObject.transform.position + carryOffset;
@@ -110,7 +125,7 @@ public class MovingEnemy : MoverPath, IEnemy
 
 		// Hit id is used to allow one hero movement per hit 
 		// (since each update scans for hits, a hero moving across an enemy may trigger multiple hits.
-		Vector3 pos = GetPosition();
+		Vector3 pos = GetBodySpritePosition();
 		if (EnemyUtils.CheckBoxHit(pos, heroPos, data.size))
 		{
 			if( EnemyUtils.CheckDistanceHit(pos, heroPos, data.size) )
@@ -165,12 +180,30 @@ public class MovingEnemy : MoverPath, IEnemy
 		this.transform.position = startPath.start;
 		AddToPath(startPath.end, data.speed);
 		SetFinishedListener(OnEntered);
+
+		this.gameObject.SetActive(true);
 	}
 
 	public virtual void Enter (Vector3 startPos, float delay)
 	{ 
 		transform.position = NormalizeVector(startPos);
 		Invoke("OnEntered", delay);
+	}
+
+	public virtual void EnterFromCarrier (Vector3 startPos, Vector3 endPos, float delay)
+	{ 
+		transform.position = NormalizeVector(startPos);
+		StartMoving(endPos);
+		SetFinishedListener(OnEntered);
+
+		if(scaler != null)
+		{
+			scaler.gameObject.transform.localScale = Vector3.zero;
+			scaler.StartScaling(Vector3.zero, Vector3.one);
+		}
+
+		this.gameObject.SetActive(true);
+		//Debug.Log(name + "EnterFromCarrier(), endPos " + endPos.ToString());
 	}
 
 	public virtual void Kill ()
@@ -188,6 +221,7 @@ public class MovingEnemy : MoverPath, IEnemy
 	{
 		if(enemyAnim != null && idleClip != null)
 		{
+			//Debug.Log(this.name +".PlayIdle()");
 			enemyAnim.clip = idleClip;
 			enemyAnim.Play();
 		}
@@ -237,6 +271,8 @@ public class MovingEnemy : MoverPath, IEnemy
 		{
 			attackTimer = UnityEngine.Random.Range(0.5f, 3f);
 		}
+
+		//Debug.Log(name + "OnEntered()");
 	}
 
 	protected virtual void OnStartExit ()
@@ -349,7 +385,7 @@ public class MovingEnemy : MoverPath, IEnemy
 
 	#endregion
 
-	protected Vector3 NormalizeVector (Vector3 pos)
+	protected virtual Vector3 NormalizeVector (Vector3 pos)
 	{
 		if(pos.y < EnemyHandler.GROUND)
 			pos.y = EnemyHandler.GROUND;
@@ -418,6 +454,16 @@ public class MovingEnemy : MoverPath, IEnemy
 
 	protected void OnEscaped ()
 	{
+	}
+
+	public virtual string LogPosition ()
+	{
+		return LogVector(this.transform.position);
+	}
+
+	public static string LogVector (Vector3 pos)
+	{
+		return string.Format("({0:n2}, {1:n2})", pos.x, pos.y);
 	}
 
 }
