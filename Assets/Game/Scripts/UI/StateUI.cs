@@ -6,7 +6,7 @@ public class StateUI : MonoBehaviour
 {
 	public GameState.State state;
 
-	public void Show ()
+	public virtual void Show ()
 	{
 		//Debug.Log(this.name + " show");
 		gameObject.SetActive (true);

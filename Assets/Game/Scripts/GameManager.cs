@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour 
 {
-
 	private static GameManager instance;
 	public static GameManager GetInstance()
 	{
@@ -15,6 +14,8 @@ public class GameManager : MonoBehaviour
 
 	private Dictionary<GameState.State, GameState> stateList;
 	private GameState currentState;
+	private HighScores highScores;
+
 
 	public static bool Exists()
 	{
@@ -31,6 +32,12 @@ public class GameManager : MonoBehaviour
 		stateList = GameState.CreateStates ();
 		currentState = stateList [GameState.State.MENU];
 		currentState.Start (this);
+
+		if(highScores == null)
+		{
+			highScores = new HighScores();
+		}
+		highScores.Load();
 
 		UIManager.GetInstance ().OnGameStateChange ();
 	}
@@ -91,7 +98,8 @@ public class GameManager : MonoBehaviour
 
 	public bool StartMenu ()
 	{
-		if(currentState.GetStateType() == GameState.State.RESULT)
+		if (currentState.GetStateType() == GameState.State.RESULT || 
+		    currentState.GetStateType() == GameState.State.HIGH_SCORE)
 		{
             SwitchState (GameState.State.MENU);
 			return true;
@@ -99,4 +107,42 @@ public class GameManager : MonoBehaviour
 
 		return false;
 	}
+
+	public void ShowHighScoresInput ()
+	{
+		if(currentState.GetStateType() == GameState.State.RESULT)
+		{
+			long newScore = enemyHandler.GetScore();
+			int scoreSlot = highScores.CheckScoreSlot(newScore);
+
+			if(scoreSlot >= 0)
+			{
+				SwitchState (GameState.State.HIGH_SCORE_INPUT);
+			}
+			else
+			{
+				SwitchState (GameState.State.HIGH_SCORE);
+			}
+		}
+	}
+
+	public bool ShowHighScores (string playerName = "")
+	{
+		if(currentState.GetStateType() == GameState.State.RESULT || 
+		   currentState.GetStateType() == GameState.State.HIGH_SCORE_INPUT)
+		{
+			long newScore = enemyHandler.GetScore();
+			highScores.AddHighScore(newScore, playerName);
+			SwitchState (GameState.State.HIGH_SCORE);
+			return true;
+		}
+
+		return false;
+	}
+
+	public string GetHighScoreLog ()
+	{
+		return highScores.GetLog();
+	}
+
 }

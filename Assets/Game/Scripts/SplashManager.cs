@@ -8,7 +8,6 @@ public class SplashManager : MonoBehaviour
 	[SerializeField] private Fader logoFader;
 	[SerializeField] private float transitionTime;
 
-	private bool preTransition = true;
 
 	void Start ()
 	{

@@ -409,6 +409,14 @@ public class EnemyHandler : MonoBehaviour
 		SoundHandler.GetInstance().PlaySFX("level_fail");
 	}
 
+	public long GetScore ()
+	{
+		if(results != null)
+			return results.score;
+		else
+			return 0;
+	}
+
 	#endregion
 
 }

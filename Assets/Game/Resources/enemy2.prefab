@@ -323,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1574191023281340
 GameObject:
   m_ObjectHideFlags: 1
@@ -989,7 +989,8 @@ MonoBehaviour:
   hitClip: {fileID: 0}
   carryOffset: {x: 0, y: -2.2, z: 0}
   scaler: {fileID: 0}
-  id: 6
+  id: 2
+  spawnControllerId: 0
   forcedType: 1
 --- !u!212 &212029339496854370
 SpriteRenderer:
