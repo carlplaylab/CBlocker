@@ -12,7 +12,8 @@ namespace Characters
 	/// </summary>
 	public class CharacterTouchControlled : MonoBehaviour
 	{
-		[SerializeField] private GameObject vipObject;
+		//[SerializeField] private GameObject vipObject;
+		[Header("Character Speed Settings")]
 		[SerializeField] private float attackSpeed;
 		[SerializeField] private float returnSpeed;
 		[SerializeField] public float groundY = -4f;
@@ -74,7 +75,6 @@ namespace Characters
 
 		public void OnMoveEnd ()
 		{
-			//GoToGirl();
 			LandToGround();
 		}
 
@@ -100,6 +100,7 @@ namespace Characters
 			pathMover.SetFinishedListener (OnMoveEnd);
 		}
 
+		/*
 		private void GoToGirl ()
 		{
 			Vector3 targetPos = vipObject.transform.position;
@@ -133,6 +134,7 @@ namespace Characters
 			returning = true;
 			pathMover.AddToPath (newPos, returnSpeed);
 		}
+		*/
 
 		#endregion
 

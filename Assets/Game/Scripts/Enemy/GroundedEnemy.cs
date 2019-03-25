@@ -183,7 +183,7 @@ public class GroundedEnemy : MovingEnemy
 		target = girl.transform;
 	}
 
-	protected virtual void OnAttackApproach ()
+	protected override void OnAttackApproach ()
 	{
 		Debug.Log(this.name + " OnAttackApproach() " + LogPosition());
 		this.transform.position = NormalizeVector(this.transform.position);

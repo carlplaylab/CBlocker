@@ -8,6 +8,7 @@ namespace Tweeners
 	/// </summary>
 	public class Mover : MonoBehaviour, ITweener
 	{
+		[Header("Mover Settings")]
 		[SerializeField] protected float speed = 1f;
 
 		protected Vector3 start;

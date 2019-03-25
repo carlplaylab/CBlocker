@@ -35,6 +35,12 @@ public class UIManager : MonoBehaviour
 
 	public void OnResultConfirm ()
 	{
+		GameManager.GetInstance ().ShowHighScoresInput ();
+		SoundHandler.PlayButton();
+	}
+
+	public void OnHighScoreConfirm ()
+	{
 		GameManager.GetInstance ().StartMenu ();
 		SoundHandler.PlayButton();
 	}
