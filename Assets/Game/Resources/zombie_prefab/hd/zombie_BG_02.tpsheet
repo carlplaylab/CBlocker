@@ -1,0 +1,12 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: zombie_BG_02.png (2048 x 1024)
+# $TexturePacker:SmartUpdate:21a891bb9f7f79c32bf5633df7e4bfc7:07ac1942b9943a5cd184a70516f116cc:63709c5d720e770658c606d6f5a89072$
+#
+
+bg;2;63;1282;959;0.5;0.5
+pork_concept;1286;691;269;331;0.5074349442379182;0.45166163141993954
